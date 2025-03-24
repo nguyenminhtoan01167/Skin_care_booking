@@ -1,0 +1,14 @@
+<div id="alerts"></div>
+
+<script>
+async function loadAlerts() {
+    const response = await fetch("/api/children/{id}/alerts");
+    const alerts = await response.json();
+    let alertHTML = "";
+    alerts.forEach(alert => {
+        alertHTML += `<p class="alert">${alert.message}</p>`;
+    });
+    document.getElementById("alerts").innerHTML = alertHTML;
+}
+loadAlerts();
+</script>

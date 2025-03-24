@@ -1,0 +1,25 @@
+<form id="growthForm">
+    <input type="date" id="date" required>
+    <input type="number" id="weight" placeholder="Cân nặng (kg)" required>
+    <input type="number" id="height" placeholder="Chiều cao (cm)" required>
+    <button type="submit">Lưu</button>
+</form>
+
+<script>
+document.getElementById("growthForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const data = {
+        date: document.getElementById("date").value,
+        weight: document.getElementById("weight").value,
+        height: document.getElementById("height").value
+    };
+    
+    const response = await fetch("/api/children/{id}/growth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) alert("Đã lưu!");
+});
+</script>

@@ -1,0 +1,17 @@
+<div>
+    <h2>Danh sách trẻ đang theo dõi</h2>
+    <ul id="childList"></ul>
+</div>
+
+<script>
+async function loadChildren() {
+    const response = await fetch("/api/children");
+    const children = await response.json();
+    let listHTML = "";
+    children.forEach(child => {
+        listHTML += `<li>${child.name} - ${child.age} tuổi</li>`;
+    });
+    document.getElementById("childList").innerHTML = listHTML;
+}
+loadChildren();
+</script>

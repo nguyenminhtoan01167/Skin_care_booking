@@ -1,0 +1,38 @@
+<h2>Danh sách yêu cầu tư vấn</h2>
+<ul id="requestList"></ul>
+
+<script>
+async function loadRequests() {
+    const response = await fetch("/api/admin/consultations");
+    const requests = await response.json();
+    let listHTML = "";
+    requests.forEach(item => {
+        listHTML += `
+            <li>
+                <b>Người dùng:</b> ${item.user} <br>
+                <b>Câu hỏi:</b> ${item.message} <br>
+                <textarea id="response_${item.id}" placeholder="Nhập phản hồi..."></textarea>
+                <button onclick="sendResponse(${item.id})">Gửi phản hồi</button>
+            </li>
+        `;
+    });
+    document.getElementById("requestList").innerHTML = listHTML;
+}
+
+async function sendResponse(id) {
+    const responseText = document.getElementById(`response_${id}`).value;
+    
+    const response = await fetch(`/api/admin/consultations/${id}/reply`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ response: responseText })
+    });
+
+    if (response.ok) {
+        alert("Đã gửi phản hồi!");
+        loadRequests();
+    }
+}
+
+loadRequests();
+</script>

@@ -1,0 +1,27 @@
+<form id="registerForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Mật khẩu" required>
+    <select id="plan">
+        <option value="free">Miễn phí</option>
+        <option value="premium">Premium</option>
+    </select>
+    <button type="submit">Đăng ký</button>
+</form>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const plan = document.getElementById("plan").value;
+
+    const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, plan })
+    });
+
+    if (response.ok) alert("Đăng ký thành công!");
+    else alert("Lỗi đăng ký");
+});
+</script>

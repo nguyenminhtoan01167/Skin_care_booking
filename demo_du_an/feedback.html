@@ -1,0 +1,46 @@
+<h2>Đánh giá hệ thống</h2>
+<form id="feedbackForm">
+    <select id="rating">
+        <option value="5">⭐⭐⭐⭐⭐ - Rất tốt</option>
+        <option value="4">⭐⭐⭐⭐ - Tốt</option>
+        <option value="3">⭐⭐⭐ - Bình thường</option>
+        <option value="2">⭐⭐ - Kém</option>
+        <option value="1">⭐ - Rất kém</option>zz
+    </select>
+    <textarea id="comment" placeholder="Nhập nhận xét..." required></textarea>
+    <button type="submit">Gửi đánh giá</button>
+</form>
+
+<h2>Đánh giá từ người dùng</h2>
+<ul id="feedbackList"></ul>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const rating = document.getElementById("rating").value;
+    const comment = document.getElementById("comment").value;
+
+    const response = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rating, comment })
+    });
+
+    if (response.ok) {
+        alert("Đã gửi đánh giá!");
+        loadFeedback();
+    }
+});
+
+async function loadFeedback() {
+    const response = await fetch("/api/feedback");
+    const feedbacks = await response.json();
+    let listHTML = "";
+    feedbacks.forEach(item => {
+        listHTML += `<li>⭐ ${item.rating}/5 - ${item.comment}</li>`;
+    });
+    document.getElementById("feedbackList").innerHTML = listHTML;
+}
+
+loadFeedback();
+</script>

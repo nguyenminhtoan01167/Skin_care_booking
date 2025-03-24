@@ -1,0 +1,38 @@
+<h2>Gửi yêu cầu tư vấn</h2>
+<form id="consultForm">
+    <textarea id="message" placeholder="Nhập câu hỏi..." required></textarea>
+    <button type="submit">Gửi yêu cầu</button>
+</form>
+
+<h2>Lịch sử tư vấn</h2>
+<ul id="consultationList"></ul>
+
+<script>
+document.getElementById("consultForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const message = document.getElementById("message").value;
+    
+    const response = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+    });
+
+    if (response.ok) {
+        alert("Đã gửi yêu cầu tư vấn!");
+        loadConsultations();
+    }
+});
+
+async function loadConsultations() {
+    const response = await fetch("/api/consultations");
+    const consultations = await response.json();
+    let listHTML = "";
+    consultations.forEach(item => {
+        listHTML += `<li>${item.message} <br><b>Bác sĩ:</b> ${item.response || "Chưa phản hồi"}</li>`;
+    });
+    document.getElementById("consultationList").innerHTML = listHTML;
+}
+
+loadConsultations();
+</script>

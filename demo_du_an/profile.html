@@ -1,0 +1,28 @@
+<h2>Hồ sơ cá nhân</h2>
+<p><b>Email:</b> <span id="email"></span></p>
+<p><b>Gói thành viên:</b> <span id="membership"></span></p>
+
+<h2>Lịch sử yêu cầu tư vấn</h2>
+<ul id="historyList"></ul>
+
+<script>
+async function loadProfile() {
+    const response = await fetch("/api/profile");
+    const profile = await response.json();
+    document.getElementById("email").innerText = profile.email;
+    document.getElementById("membership").innerText = profile.plan;
+}
+
+async function loadHistory() {
+    const response = await fetch("/api/consultations/history");
+    const history = await response.json();
+    let listHTML = "";
+    history.forEach(item => {
+        listHTML += `<li>${item.message} <br><b>Bác sĩ:</b> ${item.response || "Chưa phản hồi"}</li>`;
+    });
+    document.getElementById("historyList").innerHTML = listHTML;
+}
+
+loadProfile();
+loadHistory();
+</script>

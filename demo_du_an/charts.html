@@ -1,0 +1,20 @@
+<canvas id="growthChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+async function loadChart() {
+    const response = await fetch("/api/children/{id}/growth/history");
+    const data = await response.json();
+    const labels = data.map(record => record.date);
+    const weights = data.map(record => record.weight);
+    
+    new Chart(document.getElementById("growthChart"), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{ label: "Cân nặng (kg)", data: weights, borderColor: "blue", fill: false }]
+        }
+    });
+}
+loadChart();
+</script>
