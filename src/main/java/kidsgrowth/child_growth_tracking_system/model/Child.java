@@ -28,4 +28,3 @@ public class Child {
     // Getters and Setters
     
 }
---
