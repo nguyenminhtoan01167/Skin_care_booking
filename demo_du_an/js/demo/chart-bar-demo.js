@@ -3,8 +3,6 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 function number_format(number, decimals, dec_point, thousands_sep) {
-  // *     example: number_format(1234.56, 2, ',', ' ');
-  // *     return: '1 234,56'
   number = (number + '').replace(',', '').replace(' ', '');
   var n = !isFinite(+number) ? 0 : +number,
     prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -15,7 +13,6 @@ function number_format(number, decimals, dec_point, thousands_sep) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
   if (s[0].length > 3) {
     s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
@@ -27,19 +24,35 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+// Bar Chart Example for Child Growth
+var ctx = document.getElementById("growthBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
+    labels: ["1 tháng", "2 tháng", "3 tháng", "4 tháng", "5 tháng", "6 tháng"],
+    datasets: [
+      {
+        label: "Cân nặng (kg)",
+        backgroundColor: "#4e73df",
+        hoverBackgroundColor: "#2e59d9",
+        borderColor: "#4e73df",
+        data: [3.5, 4.2, 5.0, 5.8, 6.5, 7.2],
+      },
+      {
+        label: "Chiều cao (cm)",
+        backgroundColor: "#1cc88a",
+        hoverBackgroundColor: "#17a673",
+        borderColor: "#1cc88a",
+        data: [50, 54, 58, 61, 64, 66],
+      },
+      {
+        label: "BMI",
+        backgroundColor: "#e74a3b",
+        hoverBackgroundColor: "#c0392b",
+        borderColor: "#e74a3b",
+        data: [14, 15, 15.5, 16, 16.5, 17],
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -53,9 +66,6 @@ var myBarChart = new Chart(ctx, {
     },
     scales: {
       xAxes: [{
-        time: {
-          unit: 'month'
-        },
         gridLines: {
           display: false,
           drawBorder: false
@@ -68,12 +78,11 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 20,
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return '$' + number_format(value);
+          callback: function(value) {
+            return number_format(value);
           }
         },
         gridLines: {
@@ -86,7 +95,7 @@ var myBarChart = new Chart(ctx, {
       }],
     },
     legend: {
-      display: false
+      display: true
     },
     tooltips: {
       titleMarginBottom: 10,
@@ -103,7 +112,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     },
