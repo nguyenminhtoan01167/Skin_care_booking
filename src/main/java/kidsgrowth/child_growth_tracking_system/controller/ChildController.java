@@ -1,7 +1,7 @@
 package kidsgrowth.child_growth_tracking_system.controller;
 
-import com.example.childgrowthtracker.model.Child;
-import com.example.childgrowthtracker.service.ChildService;
+import kidsgrowth.child_growth_tracking_system.model.Child;
+import kidsgrowth.child_growth_tracking_system.service.ChildService;
 
 import kidsgrowth.child_growth_tracking_system.service.UserService;
 
