@@ -3,8 +3,6 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 function number_format(number, decimals, dec_point, thousands_sep) {
-  // *     example: number_format(1234.56, 2, ',', ' ');
-  // *     return: '1 234,56'
   number = (number + '').replace(',', '').replace(' ', '');
   var n = !isFinite(+number) ? 0 : +number,
     prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -15,7 +13,6 @@ function number_format(number, decimals, dec_point, thousands_sep) {
       var k = Math.pow(10, prec);
       return '' + Math.round(n * k) / k;
     };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
   if (s[0].length > 3) {
     s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
@@ -27,27 +24,44 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
+// Growth Chart Example
+var ctx = document.getElementById("growthChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-      label: "Earnings",
-      lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
-    }],
+    labels: ["1 tháng", "2 tháng", "3 tháng", "4 tháng", "5 tháng", "6 tháng", "7 tháng", "8 tháng", "9 tháng", "10 tháng", "11 tháng", "12 tháng"],
+    datasets: [
+      {
+        label: "Cân nặng (kg)",
+        lineTension: 0.3,
+        backgroundColor: "rgba(78, 115, 223, 0.05)",
+        borderColor: "rgba(78, 115, 223, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        data: [3.5, 4.2, 5.0, 5.8, 6.5, 7.2, 7.8, 8.3, 8.7, 9.0, 9.3, 9.5],
+      },
+      {
+        label: "Chiều cao (cm)",
+        lineTension: 0.3,
+        backgroundColor: "rgba(28, 200, 138, 0.05)",
+        borderColor: "rgba(28, 200, 138, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(28, 200, 138, 1)",
+        pointBorderColor: "rgba(28, 200, 138, 1)",
+        data: [50, 54, 58, 61, 64, 66, 68, 70, 72, 74, 75, 76],
+      },
+      {
+        label: "BMI",
+        lineTension: 0.3,
+        backgroundColor: "rgba(255, 99, 132, 0.05)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(255, 99, 132, 1)",
+        pointBorderColor: "rgba(255, 99, 132, 1)",
+        data: [14, 15, 15.5, 16, 16.5, 17, 17.2, 17.3, 17.4, 17.5, 17.6, 17.7],
+      }
+    ],
   },
   options: {
     maintainAspectRatio: false,
@@ -61,24 +75,20 @@ var myLineChart = new Chart(ctx, {
     },
     scales: {
       xAxes: [{
-        time: {
-          unit: 'date'
-        },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 12
         }
       }],
       yAxes: [{
         ticks: {
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return '$' + number_format(value);
+          callback: function(value) {
+            return number_format(value);
           }
         },
         gridLines: {
@@ -91,7 +101,7 @@ var myLineChart = new Chart(ctx, {
       }],
     },
     legend: {
-      display: false
+      display: true
     },
     tooltips: {
       backgroundColor: "rgb(255,255,255)",
@@ -110,7 +120,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }

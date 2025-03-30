@@ -1,4 +1,15 @@
-// Call the dataTables jQuery plugin
+// Call the dataTables jQuery plugin for Growth Data Table
 $(document).ready(function() {
-  $('#dataTable').DataTable();
+  $('#growthDataTable').DataTable({
+    "paging": true,
+    "searching": true,
+    "ordering": true,
+    "info": true,
+    "columns": [
+      { "title": "Tháng tuổi" },
+      { "title": "Cân nặng (kg)" },
+      { "title": "Chiều cao (cm)" },
+      { "title": "BMI" }
+    ]
+  });
 });

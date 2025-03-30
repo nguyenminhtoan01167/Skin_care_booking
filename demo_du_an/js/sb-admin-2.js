@@ -53,4 +53,14 @@
     e.preventDefault();
   });
 
+  // Custom: Highlight active sidebar link based on current page
+  $(document).ready(function() {
+    var currentPath = window.location.pathname;
+    $('.nav-item a.nav-link').each(function() {
+      if ($(this).attr('href') === currentPath) {
+        $(this).addClass('active');
+      }
+    });
+  });
+
 })(jQuery); // End of use strict
