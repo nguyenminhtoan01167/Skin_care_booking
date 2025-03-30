@@ -1,7 +1,6 @@
 -- ==========================================
--- 📦 ChildGrowthTracker - FULL DATABASE SCRIPT
+-- 📦 ChildGrowthTracker - FULL DATABASE
 -- ==========================================
--- Tổng hợp đầy đủ các bảng dựa trên yêu cầu đề tài và các file trong project
 
 -- 1. TẠO DATABASE
 CREATE DATABASE ChildGrowthTracker;
