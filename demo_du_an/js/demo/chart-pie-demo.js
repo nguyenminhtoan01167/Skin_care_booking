@@ -2,16 +2,16 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
+// Pie Chart Example for Growth Distribution
+var ctx = document.getElementById("growthPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["Cân nặng", "Chiều cao", "BMI"],
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [40, 35, 25],
+      backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#c0392b'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -28,8 +28,8 @@ var myPieChart = new Chart(ctx, {
       caretPadding: 10,
     },
     legend: {
-      display: false
+      display: true
     },
-    cutoutPercentage: 80,
+    cutoutPercentage: 70,
   },
 });

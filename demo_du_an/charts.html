@@ -3,18 +3,41 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 async function loadChart() {
-    const response = await fetch("/api/children/{id}/growth/history");
-    const data = await response.json();
-    const labels = data.map(record => record.date);
-    const weights = data.map(record => record.weight);
-    
-    new Chart(document.getElementById("growthChart"), {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{ label: "Cân nặng (kg)", data: weights, borderColor: "blue", fill: false }]
+    try {
+        const childId = "{id}"; // Cần thay thế ID thực tế từ backend hoặc dynamic
+        const response = await fetch(`/api/children/${childId}/growth/history`);
+        if (!response.ok) {
+            throw new Error("Lỗi khi tải dữ liệu biểu đồ");
         }
-    });
+        const data = await response.json();
+        
+        const labels = data.map(record => record.date);
+        const weights = data.map(record => record.weight);
+        const heights = data.map(record => record.height);
+        const bmis = data.map(record => (record.weight / ((record.height / 100) ** 2)).toFixed(2));
+        
+        new Chart(document.getElementById("growthChart"), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    { label: "Cân nặng (kg)", data: weights, borderColor: "blue", fill: false },
+                    { label: "Chiều cao (cm)", data: heights, borderColor: "green", fill: false },
+                    { label: "BMI", data: bmis, borderColor: "red", fill: false }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: "Ngày" } },
+                    y: { title: { display: true, text: "Giá trị" } }
+                }
+            }
+        });
+    } catch (error) {
+        console.error("Lỗi tải biểu đồ:", error);
+    }
 }
 loadChart();
 </script>
