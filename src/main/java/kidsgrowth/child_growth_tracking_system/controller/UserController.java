@@ -6,31 +6,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping("/api/users")  // Đặt đường dẫn cho API
 public class UserController {
     
     @Autowired
-    private UserService userService;  // Inject service để xử lý nghiệp vụ
+    private UserService userService;
 
-    // Đăng ký người dùng mới
+    // Đăng ký người dùng
     @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.ok(createdUser);  // Trả về người dùng vừa được tạo
+    public User registerUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
     // Lấy thông tin người dùng theo email
     @GetMapping("/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        
-        if (user == null) {
-            return ResponseEntity.notFound().build();  // Trả về 404 nếu không tìm thấy người dùng
-        }
-        
-        return ResponseEntity.ok(user);  // Trả về thông tin người dùng nếu tìm thấy
+    public User getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
+    // Lấy tất cả người dùng
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    // Cập nhật thông tin người dùng
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
+
+    // Xóa người dùng
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }
