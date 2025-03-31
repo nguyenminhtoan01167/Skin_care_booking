@@ -1,49 +1,47 @@
--- ==========================================
--- 📦 ChildGrowthTracker - FULL DATABASE
--- ==========================================
 
 -- 1. TẠO DATABASE
 CREATE DATABASE ChildGrowthTracker;
-GO
 
 USE ChildGrowthTracker;
-GO
 
--- 2. USERS
+-- 2. USERS - Quản lý thông tin người dùng với các vai trò (Guest, Member, Doctor, Admin)
 CREATE TABLE Users (
     Id INT IDENTITY PRIMARY KEY,
     FullName NVARCHAR(100),
     Email NVARCHAR(100) UNIQUE NOT NULL,
     PasswordHash NVARCHAR(255) NOT NULL,
-    Role NVARCHAR(20) CHECK (Role IN ('parent', 'doctor', 'admin')) NOT NULL,
+    Role NVARCHAR(20) CHECK (Role IN ('guest', 'member', 'doctor', 'admin')) NOT NULL,  -- Cập nhật các vai trò người dùng
     Status NVARCHAR(20) CHECK (Status IN ('active', 'inactive', 'pending')) DEFAULT 'active',
     CreatedAt DATETIME DEFAULT GETDATE(),
-    ExpiryDate DATETIME NULL  -- Thêm trường hết hạn tài khoản
+    ExpiryDate DATETIME NULL
 );
 
--- 3. CHILDREN
+-- 3. CHILDREN - Quản lý thông tin về trẻ em
 CREATE TABLE Children (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
     FullName NVARCHAR(100),
     Gender NVARCHAR(10) CHECK (Gender IN ('male', 'female')),
     Birthday DATE,
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    IsActive BIT DEFAULT 1 -- Trạng thái hoạt động của trẻ
 );
 
--- 4. GROWTH RECORDS
+-- 4. GROWTH RECORDS - Lưu trữ các chỉ số tăng trưởng của trẻ
 CREATE TABLE GrowthRecords (
     Id INT IDENTITY PRIMARY KEY,
     ChildId INT FOREIGN KEY REFERENCES Children(Id),
     RecordDate DATE NOT NULL,
+    AgeMonths INT, -- Tuổi tháng của trẻ
     HeightCm FLOAT,
     WeightKg FLOAT,
     BMI AS (WeightKg / POWER(HeightCm / 100.0, 2)),
-    WarningFlag BIT DEFAULT 0,
-    WarningType NVARCHAR(50)
+    GrowthType NVARCHAR(50) CHECK (GrowthType IN ('height', 'weight', 'bmi')), -- Loại phát triển
+    WarningFlag BIT DEFAULT 0, -- Cảnh báo phát triển bất thường
+    WarningType NVARCHAR(50) -- Loại cảnh báo như 'underweight', 'overweight', v.v.
 );
 
--- 5. GROWTH ALERTS
+-- 5. GROWTH ALERTS - Cảnh báo về sự phát triển bất thường của trẻ
 CREATE TABLE GrowthAlerts (
     Id INT IDENTITY PRIMARY KEY,
     GrowthRecordId INT FOREIGN KEY REFERENCES GrowthRecords(Id),
@@ -53,7 +51,7 @@ CREATE TABLE GrowthAlerts (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 6. MEMBERSHIPS (Gói thành viên)
+-- 6. MEMBERSHIPS - Quản lý các gói thành viên
 CREATE TABLE Memberships (
     Id INT IDENTITY PRIMARY KEY,
     Name NVARCHAR(100),
@@ -62,7 +60,7 @@ CREATE TABLE Memberships (
     Description NVARCHAR(MAX)
 );
 
--- 7. USER MEMBERSHIPS (Lịch sử sử dụng gói)
+-- 7. USER MEMBERSHIPS - Lịch sử sử dụng gói của người dùng
 CREATE TABLE UserMemberships (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -72,19 +70,19 @@ CREATE TABLE UserMemberships (
     PaymentStatus NVARCHAR(20) CHECK (PaymentStatus IN ('pending', 'paid', 'failed'))
 );
 
--- 8. CONSULT REQUESTS
+-- 8. CONSULT REQUESTS - Yêu cầu tư vấn từ người dùng (Member) đến bác sĩ (Doctor)
 CREATE TABLE ConsultRequests (
     Id INT IDENTITY PRIMARY KEY,
-    UserId INT FOREIGN KEY REFERENCES Users(Id),
+    UserId INT FOREIGN KEY REFERENCES Users(Id), -- Người dùng yêu cầu tư vấn (Member)
     ChildId INT FOREIGN KEY REFERENCES Children(Id),
-    DoctorId INT FOREIGN KEY REFERENCES Doctors(Id),  -- Thêm bác sĩ
+    DoctorId INT FOREIGN KEY REFERENCES Doctors(Id), -- Thêm bác sĩ (Doctor)
     Message NVARCHAR(MAX),
     Status NVARCHAR(20) CHECK (Status IN ('pending', 'replied', 'completed')) DEFAULT 'pending',
     ReminderDate DATETIME DEFAULT NULL,  -- Thời gian nhắc nhở
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 9. CONSULT RESPONSES
+-- 9. CONSULT RESPONSES - Phản hồi từ bác sĩ cho yêu cầu tư vấn
 CREATE TABLE ConsultResponses (
     Id INT IDENTITY PRIMARY KEY,
     ConsultId INT FOREIGN KEY REFERENCES ConsultRequests(Id),
@@ -93,7 +91,7 @@ CREATE TABLE ConsultResponses (
     ResponseDate DATETIME DEFAULT GETDATE()
 );
 
--- 10. FEEDBACK
+-- 10. FEEDBACK - Quản lý đánh giá và phản hồi từ người dùng
 CREATE TABLE Feedback (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -102,7 +100,7 @@ CREATE TABLE Feedback (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 11. BLOGS
+-- 11. BLOGS - Quản lý các bài viết chia sẻ kinh nghiệm
 CREATE TABLE Blogs (
     Id INT IDENTITY PRIMARY KEY,
     Title NVARCHAR(255),
@@ -111,7 +109,7 @@ CREATE TABLE Blogs (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 12. FAQ
+-- 12. FAQ - Quản lý các câu hỏi thường gặp
 CREATE TABLE FAQs (
     Id INT IDENTITY PRIMARY KEY,
     Question NVARCHAR(255),
@@ -119,16 +117,16 @@ CREATE TABLE FAQs (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 13. SHARED GROWTH DATA
+-- 13. SHARED GROWTH DATA - Chia sẻ dữ liệu tăng trưởng giữa người dùng và bác sĩ
 CREATE TABLE SharedGrowthData (
     Id INT IDENTITY PRIMARY KEY,
     ChildId INT FOREIGN KEY REFERENCES Children(Id),
     DoctorId INT FOREIGN KEY REFERENCES Users(Id),
     SharedAt DATETIME DEFAULT GETDATE(),
-    CanComment BIT DEFAULT 1
+    CanComment BIT DEFAULT 1 -- Cho phép hoặc không cho phép bác sĩ và người dùng bình luận
 );
 
--- 14. USER LOGS (Lịch sử hoạt động người dùng)
+-- 14. USER LOGS - Lịch sử hoạt động người dùng
 CREATE TABLE UserLogs (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -136,7 +134,7 @@ CREATE TABLE UserLogs (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 15. PAYMENTS (Thanh toán cho gói dịch vụ)
+-- 15. PAYMENTS - Lưu trữ thông tin thanh toán cho các gói thành viên
 CREATE TABLE Payments (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -144,10 +142,10 @@ CREATE TABLE Payments (
     Amount DECIMAL(10, 2),
     PaymentStatus NVARCHAR(20) CHECK (PaymentStatus IN ('pending', 'paid', 'failed')),
     PaymentDate DATETIME DEFAULT GETDATE(),
-    TransactionId NVARCHAR(100) -- Tham chiếu mã giao dịch
+    TransactionId NVARCHAR(100)
 );
 
--- 16. HEALTH REPORTS (Báo cáo sức khỏe tổng hợp)
+-- 16. HEALTH REPORTS - Lưu trữ báo cáo sức khỏe tổng hợp
 CREATE TABLE HealthReports (
     Id INT IDENTITY PRIMARY KEY,
     ChildId INT FOREIGN KEY REFERENCES Children(Id),
@@ -156,11 +154,10 @@ CREATE TABLE HealthReports (
     WeightKg FLOAT,
     BMI FLOAT,
     Status NVARCHAR(50) CHECK (Status IN ('Normal', 'Underweight', 'Overweight', 'Obese')),
-    ReportSummary NVARCHAR(MAX),
-    IsReviewed BIT DEFAULT 0  -- Thêm trường kiểm tra xem báo cáo đã được xem hay chưa
+    ReportSummary NVARCHAR(MAX)
 );
 
--- 17. DOCTORS (Quản lý bác sĩ)
+-- 17. DOCTORS - Quản lý bác sĩ
 CREATE TABLE Doctors (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -169,7 +166,7 @@ CREATE TABLE Doctors (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
--- 18. SERVICES (Dịch vụ và gói bổ sung)
+-- 18. SERVICES - Dịch vụ và gói bổ sung
 CREATE TABLE Services (
     Id INT IDENTITY PRIMARY KEY,
     Name NVARCHAR(100),
@@ -178,7 +175,7 @@ CREATE TABLE Services (
     ServiceType NVARCHAR(50) CHECK (ServiceType IN ('consultation', 'checkup', 'nutrition'))
 );
 
--- 19. NOTIFICATIONS (Thông báo / nhắc nhở bác sĩ)
+-- 19. NOTIFICATIONS - Thông báo và nhắc nhở bác sĩ
 CREATE TABLE Notifications (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -186,11 +183,10 @@ CREATE TABLE Notifications (
     NotificationType NVARCHAR(50) CHECK (NotificationType IN ('alert', 'reminder', 'update')),
     Status NVARCHAR(20) CHECK (Status IN ('sent', 'pending', 'failed')),
     CreatedAt DATETIME DEFAULT GETDATE(),
-    SentAt DATETIME NULL,
-    IsRead BIT DEFAULT 0  -- Thêm cột để đánh dấu đã đọc hay chưa
+    SentAt DATETIME NULL
 );
 
--- 20. GROWTH MILESTONES (Mốc phát triển chuẩn)
+-- 20. GROWTH MILESTONES - Mốc phát triển chuẩn
 CREATE TABLE GrowthMilestones (
     Id INT IDENTITY PRIMARY KEY,
     AgeMonths INT,  -- Độ tuổi (tháng)
@@ -203,7 +199,7 @@ CREATE TABLE GrowthMilestones (
     Category NVARCHAR(50) CHECK (Category IN ('Normal', 'Underweight', 'Overweight', 'Obese'))
 );
 
--- 21. SESSION LOGS (Lịch sử đăng nhập người dùng)
+-- 21. SESSION LOGS - Lịch sử đăng nhập người dùng
 CREATE TABLE SessionLogs (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -213,7 +209,7 @@ CREATE TABLE SessionLogs (
     IPAddress NVARCHAR(50)
 );
 
--- 22. DASHBOARD STATS (Thống kê tổng hợp cho Dashboard)
+-- 22. DASHBOARD STATS - Thống kê tổng hợp cho Dashboard
 CREATE TABLE DashboardStats (
     Id INT IDENTITY PRIMARY KEY,
     UserId INT FOREIGN KEY REFERENCES Users(Id),
@@ -221,7 +217,16 @@ CREATE TABLE DashboardStats (
     TotalConsultRequests INT DEFAULT 0,
     TotalActiveMemberships INT DEFAULT 0,
     TotalAlerts INT DEFAULT 0,
-    TotalSharedGrowthData INT DEFAULT 0,  -- Thêm thống kê số lượng dữ liệu phát triển đã chia sẻ
     CreatedAt DATETIME DEFAULT GETDATE()
 );
-----
+
+-- 23. DASHBOARD REPORTS - Báo cáo tổng hợp theo ngày/tháng
+CREATE TABLE DashboardReports (
+    Id INT IDENTITY PRIMARY KEY,
+    TotalConsultRequests INT DEFAULT 0, -- Tổng số yêu cầu tư vấn
+    TotalGrowthAlerts INT DEFAULT 0,    -- Tổng số cảnh báo tăng trưởng
+    TotalUsers INT DEFAULT 0,          -- Tổng số người dùng
+    TotalChildren INT DEFAULT 0,       -- Tổng số trẻ em
+    TotalActiveMemberships INT DEFAULT 0,  -- Tổng số gói thành viên hoạt động
+    ReportDate DATETIME DEFAULT GETDATE()  -- Ngày báo cáo
+);
