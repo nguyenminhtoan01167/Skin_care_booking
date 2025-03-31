@@ -1,7 +1,7 @@
 package kidsgrowth.child_growth_tracking_system.controller;
 
-import com.example.childgrowthtracker.model.Child;
-import com.example.childgrowthtracker.service.ChildService;
+import kidsgrowth.child_growth_tracking_system.model.Child;
+import kidsgrowth.child_growth_tracking_system.service.ChildService;
 
 import kidsgrowth.child_growth_tracking_system.service.UserService;
 
@@ -9,29 +9,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/children")
 public class ChildController {
 
     @Autowired
-    private UserService userService;
+    private ChildService childService;
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody User user) {
-        User createdUser = userService.createUser(user);
-        return ResponseEntity.ok(createdUser);
+    // Thêm mới trẻ em
+    @PostMapping
+    public Child createChild(@RequestBody Child child) {
+        return childService.createChild(child);
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-        User user = userService.getUserByEmail(email);
-        if (user == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(user);
+    // Lấy thông tin trẻ em theo ID
+    @GetMapping("/{id}")
+    public Child getChildById(@PathVariable Long id) {
+        return childService.getChildById(id);
     }
-    
+
+    // Lấy tất cả trẻ em
+    @GetMapping
+    public List<Child> getAllChildren() {
+        return childService.getAllChildren();
+    }
+
+    // Cập nhật thông tin trẻ em
+    @PutMapping("/{id}")
+    public Child updateChild(@PathVariable Long id, @RequestBody Child child) {
+        return childService.updateChild(id, child);
+    }
+
+    // Xóa trẻ em
+    @DeleteMapping("/{id}")
+    public void deleteChild(@PathVariable Long id) {
+        childService.deleteChild(id);
+    }
 }
 

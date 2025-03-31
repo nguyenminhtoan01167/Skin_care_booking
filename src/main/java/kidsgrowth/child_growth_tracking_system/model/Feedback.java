@@ -9,21 +9,18 @@ import jakarta.persistence.ManyToOne;
 
 import java.util.Date;
 @Entity
-public class Child {
-    @Id
+public class Feedback {
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user; // Parent
+    private User user;
 
-    private String fullName;
-    private String gender;
-    private Date birthday;
+    private Integer rating;
+    private String message;
     private Date createdAt;
-
-    private boolean isActive = true; // Trạng thái hoạt động của trẻ
 
     // Getters and Setters
     public Long getId() {
@@ -42,28 +39,20 @@ public class Child {
         this.user = user;
     }
 
-    public String getFullName() {
-        return fullName;
+    public Integer getRating() {
+        return rating;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
-    public String getGender() {
-        return gender;
+    public String getMessage() {
+        return message;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Date getCreatedAt() {
@@ -73,15 +62,4 @@ public class Child {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    
-    
 }
