@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { registerUser } from '../services/api';
 
 function RegisterPage() {
-  const [email, setEmail] = useState('0');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async (e) => {
