@@ -51,4 +51,3 @@ public class GrowthRecordController {
         growthRecordService.deleteGrowthRecord(id);
     }
 }
-}

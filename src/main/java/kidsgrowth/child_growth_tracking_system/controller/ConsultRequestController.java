@@ -1,7 +1,7 @@
 package kidsgrowth.child_growth_tracking_system.controller;
 
-import com.example.childgrowthtracker.model.ConsultRequest;
-import com.example.childgrowthtracker.service.ConsultRequestService;
+import kidsgrowth.child_growth_tracking_system.model.ConsultRequest;
+import kidsgrowth.child_growth_tracking_system.service.ConsultRequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

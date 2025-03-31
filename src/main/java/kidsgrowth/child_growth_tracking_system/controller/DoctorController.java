@@ -1,6 +1,6 @@
 package kidsgrowth.child_growth_tracking_system.controller;
-import com.example.childgrowthtracker.model.Doctor;
-import com.example.childgrowthtracker.service.DoctorService;
+import kidsgrowth.child_growth_tracking_system.model.Doctor;
+import kidsgrowth.child_growth_tracking_system.service.DoctorService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
