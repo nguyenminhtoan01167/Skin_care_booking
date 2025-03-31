@@ -3,6 +3,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import kidsgrowth.child_growth_tracking_system.model.GrowthRecord;
+
+import java.util.Date;
 import java.util.List;
 @Repository
 public interface GrowthRecordRepository extends JpaRepository<GrowthRecord, Long> {

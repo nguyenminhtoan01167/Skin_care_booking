@@ -1,5 +1,6 @@
 package kidsgrowth.child_growth_tracking_system.repository;
 import kidsgrowth.child_growth_tracking_system.model.Membership;
+import kidsgrowth.child_growth_tracking_system.model.UserMembership;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;

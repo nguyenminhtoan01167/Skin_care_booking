@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import kidsgrowth.child_growth_tracking_system.model.Doctor;
 
 import kidsgrowth.child_growth_tracking_system.model.Feedback;
+import java.util.List;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<Doctor, Long> {

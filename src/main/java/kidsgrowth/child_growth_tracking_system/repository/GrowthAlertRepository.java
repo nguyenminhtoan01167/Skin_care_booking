@@ -8,4 +8,3 @@ import java.util.List;
 public interface GrowthAlertRepository extends JpaRepository<GrowthAlert, Long> {
     List<GrowthAlert> findByGrowthRecordId(Long growthRecordId);  // Tìm cảnh báo theo ID của chỉ số tăng trưởng
 }
-}
