@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import java.util.Date;
 @Entity
 public class Feedback {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
