@@ -5,7 +5,7 @@ function GrowthChart({ growthData }) {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart data={growthData}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 33" />
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
