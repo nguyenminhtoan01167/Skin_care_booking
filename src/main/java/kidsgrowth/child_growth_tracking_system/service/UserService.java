@@ -4,7 +4,7 @@ import kidsgrowth.child_growth_tracking_system.model.User;
 import kidsgrowth.child_growth_tracking_system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +21,11 @@ public class UserService {
     }
 
     // Lấy người dùng theo email
+    // public User getUserByEmail(String email) {
+    //     return userRepository.findByEmail(email);
+    // }
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).orElse(null);  // Trả về null nếu không tìm thấy người dùng
     }
 
     // Lấy tất cả người dùng

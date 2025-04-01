@@ -2,10 +2,12 @@ package kidsgrowth.child_growth_tracking_system.service;
 import kidsgrowth.child_growth_tracking_system.model.Feedback;
 import kidsgrowth.child_growth_tracking_system.repository.FeedbackRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 @Service
 public class FeedbackService {
@@ -17,6 +19,7 @@ public class FeedbackService {
         return feedbackRepository.save(feedback);
     }
 
+
     // Lấy thông tin phản hồi theo ID
     public Feedback getFeedbackById(Long id) {
         Optional<Feedback> feedback = feedbackRepository.findById(id);
@@ -27,7 +30,7 @@ public class FeedbackService {
     public List<Feedback> getAllFeedbacks() {
         return feedbackRepository.findAll();
     }
-
+    
     // Cập nhật phản hồi
     public Feedback updateFeedback(Long id, Feedback feedback) {
         Optional<Feedback> existingFeedback = feedbackRepository.findById(id);
