@@ -1,5 +1,5 @@
 package kidsgrowth.child_growth_tracking_system.model;
-
+import jakarta.persistence.EnumType;//
 import javax.persistence.*;
 
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
 package kidsgrowth.child_growth_tracking_system.controller;
 
-import com.example.childgrowthtracker.model.ConsultRequest;
-import com.example.childgrowthtracker.service.ConsultRequestService;
+import kidsgrowth.child_growth_tracking_system.model.ConsultRequest;
+import kidsgrowth.child_growth_tracking_system.service.ConsultRequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/consult-requests")

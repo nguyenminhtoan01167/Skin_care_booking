@@ -1,7 +1,7 @@
 package kidsgrowth.child_growth_tracking_system.controller;
 
-import com.example.childgrowthtracker.model.Feedback;
-import com.example.childgrowthtracker.service.FeedbackService;
+import kidsgrowth.child_growth_tracking_system.model.Feedback;
+import kidsgrowth.child_growth_tracking_system.service.FeedbackService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/feedback")

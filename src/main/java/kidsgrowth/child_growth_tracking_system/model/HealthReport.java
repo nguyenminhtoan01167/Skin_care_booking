@@ -1,7 +1,6 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import jakarta.persistence.EnumType;//
 import javax.persistence.*;
-
+import jakarta.persistence.EnumType;//
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -10,31 +9,28 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.util.Date;
-
 @Entity
-public class GrowthRecord {
+public class HealthReport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "child_id")
-    private Child child;
+    private Child child;  // Liên kết với bảng Child (trẻ em)
 
-    private Date recordDate;
-    private Integer ageMonths;
-    private Float heightCm;
-    private Float weightKg;
-    private Float bmi;
-
+    private Date reportDate;  // Ngày báo cáo
+    private Float heightCm;   // Chiều cao (cm)
+    private Float weightKg;   // Cân nặng (kg)
+    private Float bmi;        // BMI (Chỉ số khối cơ thể)
+    
     @Enumerated(EnumType.STRING)
-    private GrowthType growthType;
+    private Status status;    // Trạng thái sức khỏe của trẻ (Normal, Underweight, Overweight, Obese)
+    
+    private String reportSummary;  // Tóm tắt báo cáo sức khỏe
 
-    private boolean warningFlag;
-    private String warningType;
-
-    public enum GrowthType {
-        HEIGHT, WEIGHT, BMI
+    public enum Status {
+        NORMAL, UNDERWEIGHT, OVERWEIGHT, OBESE
     }
 
     // Getters and Setters
@@ -54,20 +50,12 @@ public class GrowthRecord {
         this.child = child;
     }
 
-    public Date getRecordDate() {
-        return recordDate;
+    public Date getReportDate() {
+        return reportDate;
     }
 
-    public void setRecordDate(Date recordDate) {
-        this.recordDate = recordDate;
-    }
-
-    public Integer getAgeMonths() {
-        return ageMonths;
-    }
-
-    public void setAgeMonths(Integer ageMonths) {
-        this.ageMonths = ageMonths;
+    public void setReportDate(Date reportDate) {
+        this.reportDate = reportDate;
     }
 
     public Float getHeightCm() {
@@ -94,27 +82,19 @@ public class GrowthRecord {
         this.bmi = bmi;
     }
 
-    public GrowthType getGrowthType() {
-        return growthType;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setGrowthType(GrowthType growthType) {
-        this.growthType = growthType;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public boolean isWarningFlag() {
-        return warningFlag;
+    public String getReportSummary() {
+        return reportSummary;
     }
 
-    public void setWarningFlag(boolean warningFlag) {
-        this.warningFlag = warningFlag;
-    }
-
-    public String getWarningType() {
-        return warningType;
-    }
-
-    public void setWarningType(String warningType) {
-        this.warningType = warningType;
+    public void setReportSummary(String reportSummary) {
+        this.reportSummary = reportSummary;
     }
 }

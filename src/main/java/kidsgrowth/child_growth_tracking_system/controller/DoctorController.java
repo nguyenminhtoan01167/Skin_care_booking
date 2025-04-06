@@ -1,6 +1,6 @@
 package kidsgrowth.child_growth_tracking_system.controller;
-import com.example.childgrowthtracker.model.Doctor;
-import com.example.childgrowthtracker.service.DoctorService;
+import kidsgrowth.child_growth_tracking_system.model.Doctor;
+import kidsgrowth.child_growth_tracking_system.service.DoctorService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/doctors")
