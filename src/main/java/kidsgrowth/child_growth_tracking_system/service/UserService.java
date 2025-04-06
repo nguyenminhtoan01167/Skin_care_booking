@@ -4,7 +4,7 @@ import kidsgrowth.child_growth_tracking_system.model.User;
 import kidsgrowth.child_growth_tracking_system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
