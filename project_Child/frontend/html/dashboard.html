@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="growth-chart.html">Biểu Đồ Tăng Trưởng</a></li>
+        <li><a href="profile.html">Hồ Sơ</a></li>
+        <li><a href="logout.html">Đăng Xuất</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="dashboard">
+    <h1>Chào mừng đến với Dashboard</h1>
+    <div class="summary">
+      <h2>Tổng quan thông tin tăng trưởng</h2>
+      <p>Thông tin tăng trưởng của các trẻ bạn đang theo dõi:</p>
+      <!-- Các thông tin tổng quan sẽ được hiển thị ở đây -->
+    </div>
+    <div class="growth-chart">
+      <h3>Biểu đồ tăng trưởng</h3>
+      <canvas id="growthChart"></canvas>
+      <script>
+        // Dữ liệu biểu đồ mẫu sẽ được lấy từ backend

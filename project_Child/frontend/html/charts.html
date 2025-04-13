@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biểu Đồ Tăng Trưởng</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="growth-chart.html">Biểu Đồ Tăng Trưởng</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="growth-chart">
+    <h1>Biểu Đồ Tăng Trưởng Của Trẻ</h1>
+    <canvas id="growthChart"></canvas>
+    <script>
+      var ctx = document.getElementById('growthChart').getContext('2d');
+      var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['0 tháng', '6 tháng', '1 năm', '2 năm', '3 năm'], 
+          datasets: [{
+            label: 'Cân Nặng (kg)',
+            data: [3, 8, 12, 15, 18], // Dữ liệu mẫu, bạn sẽ lấy từ backend
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false
+          }]
+        },
+        options: {}
+      });
+    </script>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Growth Tracker System</p>
+  </footer>
+</body>
+</html>
