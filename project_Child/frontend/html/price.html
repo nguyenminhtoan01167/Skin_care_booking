@@ -4,36 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Các Gói Thành Viên</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Trang Chủ</a></li>
-        <li><a href="pricing.html">Gói Thành Viên</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="FAQ.html">FAQ</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Growth Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="pricing.html">Gói Thành Viên</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="FAQ.html">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <section id="pricing">
-    <h1>Các Gói Thành Viên</h1>
-    <div class="pricing-option">
-      <h2>Gói Cơ Bản</h2>
-      <p>Miễn phí, chỉ cung cấp thông tin cơ bản về sự phát triển của trẻ.</p>
-      <button>Đăng Ký</button>
-    </div>
-    <div class="pricing-option">
-      <h2>Gói Cao Cấp</h2>
-      <p>Chứa đầy đủ các tính năng: Theo dõi biểu đồ tăng trưởng, kết nối bác sĩ, và các cảnh báo sức khỏe.</p>
-      <button>Đăng Ký</button>
+  <section id="pricing" class="text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Các Gói Thành Viên</h1>
+      <p class="lead">Chọn gói phù hợp với nhu cầu theo dõi sự phát triển của trẻ.</p>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card">
+            <img src="img/basic-package.jpg" class="card-img-top" alt="Gói Cơ Bản">
+            <div class="card-body">
+              <h5 class="card-title">Gói Cơ Bản</h5>
+              <p class="card-text">Miễn phí, chỉ cung cấp thông tin cơ bản về sự phát triển của trẻ.</p>
+              <a href="register.html" class="btn btn-primary">Đăng Ký</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card">
+            <img src="img/premium-package.jpg" class="card-img-top" alt="Gói Cao Cấp">
+            <div class="card-body">
+              <h5 class="card-title">Gói Cao Cấp</h5>
+              <p class="card-text">Chứa đầy đủ các tính năng: Theo dõi biểu đồ tăng trưởng, kết nối bác sĩ, và các cảnh báo sức khỏe.</p>
+              <a href="register.html" class="btn btn-primary">Đăng Ký</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer>
+  <footer class="text-center py-4">
     <p>&copy; 2025 Growth Tracker System</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
