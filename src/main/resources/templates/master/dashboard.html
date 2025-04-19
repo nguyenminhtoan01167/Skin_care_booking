@@ -6,6 +6,16 @@
   <title>Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .card {
+      min-height: 250px;
+    }
+
+    #growthChart {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -19,91 +29,23 @@
   <section class="container py-5">
     <h1 class="text-center">Chào Mừng Đến Với Dashboard</h1>
     
-    <!-- Tổng quan sự phát triển -->
+    <!-- Chọn trẻ để xem biểu đồ -->
     <div class="row">
-      <div class="col-md-6">
-        <div class="card">
-          <img src="growth-overview.png" class="card-img-top" alt="Growth Overview">
-          <div class="card-body">
-            <h5 class="card-title">Tổng Quan Sự Phát Triển</h5>
-            <p class="card-text">Xem các chỉ số tăng trưởng của trẻ như cân nặng, chiều cao và BMI.</p>
-            <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Theo dõi nhiều trẻ -->
-      <div class="col-md-6">
-        <div class="card">
-          <img src="multiple-children.jpg" class="card-img-top" alt="Multiple Children">
-          <div class="card-body">
-            <h5 class="card-title">Theo Dõi Nhiều Trẻ</h5>
-            <p class="card-text">Theo dõi sự phát triển của nhiều trẻ cùng lúc.</p>
-            <a href="#multi-child-section" class="btn btn-primary">Xem Các Trẻ</a>
-          </div>
-        </div>
+      <div class="col-md-12 text-center">
+        <label for="childSelector">Chọn Trẻ:</label>
+        <select id="childSelector" class="form-select" onchange="loadGrowthChart(this.value)">
+          <option value="child1">Trẻ 1</option>
+          <option value="child2">Trẻ 2</option>
+          <option value="child3">Trẻ 3</option>
+        </select>
       </div>
     </div>
 
-    <!-- Mục theo dõi nhiều trẻ -->
-    <section id="multi-child-section" class="mt-4">
-      <h2 class="text-center">Danh Sách Các Trẻ</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Trẻ 1</h5>
-              <p>Cân Nặng: 3kg</p>
-              <p>Chiều Cao: 50cm</p>
-              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
-            </div>
-          </div>
-        </div>
-        <!-- Các trẻ khác -->
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Trẻ 2</h5>
-              <p>Cân Nặng: 8kg</p>
-              <p>Chiều Cao: 65cm</p>
-              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Trẻ 3</h5>
-              <p>Cân Nặng: 12kg</p>
-              <p>Chiều Cao: 75cm</p>
-              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Báo cáo tăng trưởng -->
+    <!-- Biểu đồ tăng trưởng của trẻ -->
     <div class="row mt-4">
       <div class="col-md-12">
-        <h2 class="text-center">Báo Cáo Tăng Trưởng</h2>
+        <h2 class="text-center">Biểu Đồ Tăng Trưởng</h2>
         <canvas id="growthChart"></canvas>
-        <script>
-          var ctx = document.getElementById('growthChart').getContext('2d');
-          var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: ['0 tháng', '6 tháng', '1 năm', '2 năm'],
-              datasets: [{
-                label: 'Cân Nặng (kg)',
-                data: [3, 8, 12, 15],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                fill: false
-              }]
-            },
-            options: {}
-          });
-        </script>
       </div>
     </div>
   </section>
@@ -111,6 +53,61 @@
   <footer class="text-center py-4">
     <p>&copy; 2025 Growth Tracker System</p>
   </footer>
+
+  <script>
+    const growthData = {
+      child1: {
+        labels: ['0 tháng', '6 tháng', '1 năm', '2 năm'],
+        weightData: [3, 8, 12, 15],
+        heightData: [50, 65, 80, 95]
+      },
+      child2: {
+        labels: ['0 tháng', '6 tháng', '1 năm', '2 năm'],
+        weightData: [2.5, 7, 11, 14],
+        heightData: [48, 63, 78, 92]
+      },
+      child3: {
+        labels: ['0 tháng', '6 tháng', '1 năm', '2 năm'],
+        weightData: [3.2, 7.5, 10.5, 13.2],
+        heightData: [49, 64, 79, 90]
+      }
+    };
+
+    // Hàm để tải biểu đồ cho trẻ được chọn
+    function loadGrowthChart(child) {
+      const data = growthData[child];
+      
+      const ctx = document.getElementById('growthChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.labels,
+          datasets: [{
+            label: 'Cân Nặng (kg)',
+            data: data.weightData,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false
+          }, {
+            label: 'Chiều Cao (cm)',
+            data: data.heightData,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            fill: false
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    // Tải biểu đồ cho trẻ đầu tiên mặc định
+    loadGrowthChart('child1');
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
