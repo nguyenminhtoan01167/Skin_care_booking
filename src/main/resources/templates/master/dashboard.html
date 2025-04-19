@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet"> <!-- Tùy chỉnh CSS nếu cần -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -13,38 +12,18 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Growth Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Trang Chủ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="dashboard.html">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Gói Thành Viên</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="blog.html">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="FAQ.html">FAQ</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </nav>
   </header>
 
   <section class="container py-5">
     <h1 class="text-center">Chào Mừng Đến Với Dashboard</h1>
+    
+    <!-- Tổng quan sự phát triển -->
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <img src="img/growth-overview.jpg" class="card-img-top" alt="Growth Overview">
+          <img src="growth-overview.png" class="card-img-top" alt="Growth Overview">
           <div class="card-body">
             <h5 class="card-title">Tổng Quan Sự Phát Triển</h5>
             <p class="card-text">Xem các chỉ số tăng trưởng của trẻ như cân nặng, chiều cao và BMI.</p>
@@ -53,31 +32,71 @@
         </div>
       </div>
 
+      <!-- Theo dõi nhiều trẻ -->
       <div class="col-md-6">
         <div class="card">
-          <img src="img/multiple-children.jpg" class="card-img-top" alt="Multiple Children">
+          <img src="multiple-children.jpg" class="card-img-top" alt="Multiple Children">
           <div class="card-body">
             <h5 class="card-title">Theo Dõi Nhiều Trẻ</h5>
-            <p class="card-text">Bạn có thể theo dõi sự phát triển của nhiều trẻ cùng lúc.</p>
-            <a href="multi-child.html" class="btn btn-primary">Xem Các Trẻ</a>
+            <p class="card-text">Theo dõi sự phát triển của nhiều trẻ cùng lúc.</p>
+            <a href="#multi-child-section" class="btn btn-primary">Xem Các Trẻ</a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Mục theo dõi nhiều trẻ -->
+    <section id="multi-child-section" class="mt-4">
+      <h2 class="text-center">Danh Sách Các Trẻ</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Trẻ 1</h5>
+              <p>Cân Nặng: 3kg</p>
+              <p>Chiều Cao: 50cm</p>
+              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
+            </div>
+          </div>
+        </div>
+        <!-- Các trẻ khác -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Trẻ 2</h5>
+              <p>Cân Nặng: 8kg</p>
+              <p>Chiều Cao: 65cm</p>
+              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Trẻ 3</h5>
+              <p>Cân Nặng: 12kg</p>
+              <p>Chiều Cao: 75cm</p>
+              <a href="growth-chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Báo cáo tăng trưởng -->
     <div class="row mt-4">
       <div class="col-md-12">
-        <h2 class="text-center">Biểu Đồ Tăng Trưởng</h2>
+        <h2 class="text-center">Báo Cáo Tăng Trưởng</h2>
         <canvas id="growthChart"></canvas>
         <script>
           var ctx = document.getElementById('growthChart').getContext('2d');
           var chart = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['0 tháng', '6 tháng', '1 năm', '2 năm', '3 năm'],
+              labels: ['0 tháng', '6 tháng', '1 năm', '2 năm'],
               datasets: [{
                 label: 'Cân Nặng (kg)',
-                data: [3, 8, 12, 15, 18],
+                data: [3, 8, 12, 15],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 fill: false
               }]
@@ -85,30 +104,6 @@
             options: {}
           });
         </script>
-      </div>
-    </div>
-
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <div class="card">
-          <img src="img/share-health.jpg" class="card-img-top" alt="Chia Sẻ Sức Khỏe">
-          <div class="card-body">
-            <h5 class="card-title">Chia Sẻ Dữ Liệu Với Bác Sĩ</h5>
-            <p class="card-text">Chia sẻ các chỉ số sức khỏe và biểu đồ với bác sĩ để nhận lời khuyên.</p>
-            <a href="share-health.html" class="btn btn-primary">Chia Sẻ Dữ Liệu</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card">
-          <img src="img/doctor-consultation.jpg" class="card-img-top" alt="Tư Vấn Bác Sĩ">
-          <div class="card-body">
-            <h5 class="card-title">Tư Vấn Với Bác Sĩ</h5>
-            <p class="card-text">Yêu cầu bác sĩ đánh giá sự phát triển của trẻ và nhận tư vấn chuyên môn.</p>
-            <a href="doctor-consultation.html" class="btn btn-primary">Yêu Cầu Tư Vấn</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
