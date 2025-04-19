@@ -18,7 +18,7 @@ public class DatabaseConnectionTest {
         // Kiểm tra kết nối cơ sở dữ liệu
         try (Connection connection = dataSource.getConnection()) {
             assertNotNull(connection, "Connection should not be null");
-            System.out.println("Database connection successful!");
+            System.out.println("Database connection successfull!");
         } catch (SQLException e) {
             e.printStackTrace();
             throw new SQLException("Unable to connect to the database.");
