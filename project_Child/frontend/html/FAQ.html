@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Câu Hỏi Thường Gặp</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -18,8 +17,6 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
-            <li class="nav-item"><a class="nav-link" href="pricing.html">Gói Thành Viên</a></li>
-            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
             <li class="nav-item"><a class="nav-link active" href="FAQ.html">FAQ</a></li>
           </ul>
         </div>
@@ -30,6 +27,10 @@
   <section id="faq" class="py-5">
     <div class="container">
       <h1 class="text-center">Câu Hỏi Thường Gặp</h1>
+
+      <!-- Tính năng tìm kiếm -->
+      <input type="text" id="search-faq" class="form-control mb-4" placeholder="Tìm kiếm câu hỏi...">
+
       <div class="mb-4">
         <h3>Câu hỏi 1: Làm sao để đăng ký thành viên?</h3>
         <p>Để đăng ký thành viên, bạn chỉ cần điền thông tin vào mẫu đăng ký tại trang <a href="register.html">Đăng Ký</a>.</p>
@@ -38,13 +39,23 @@
         <h3>Câu hỏi 2: Làm thế nào để cập nhật thông tin tăng trưởng của trẻ?</h3>
         <p>Thông tin tăng trưởng có thể được cập nhật qua trang <a href="growth-chart.html">Biểu Đồ Tăng Trưởng</a> của bạn.</p>
       </div>
-      <img src="C:\Child_Growth\project_Child-Growth-Tracking-System\project_Child-Growth-Tracking-System-1\project_Child\frontend\image\images (1).png" class="img-fluid mt-4" alt="FAQ Image">
     </div>
   </section>
 
   <footer class="text-center py-4">
     <p>&copy; 2025 Growth Tracker System</p>
   </footer>
+
+  <script>
+    document.getElementById("search-faq").addEventListener("input", function() {
+      var query = this.value.toLowerCase();
+      var faqs = document.querySelectorAll(".mb-4");
+      faqs.forEach(function(faq) {
+        var question = faq.querySelector("h3").textContent.toLowerCase();
+        faq.style.display = question.includes(query) ? "block" : "none";
+      });
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
