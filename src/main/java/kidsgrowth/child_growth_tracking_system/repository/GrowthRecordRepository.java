@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.List;
 @Repository
 public interface GrowthRecordRepository extends JpaRepository<GrowthRecord, Long> {
-    List<GrowthRecord> findByChildId(Long childId);  // Tìm các chỉ số tăng trưởng theo ID của trẻ
-    List<GrowthRecord> findByRecordDateBetween(Long childId, Date startDate, Date endDate);  // Tìm các chỉ số tăng trưởng trong khoảng thời gian
+
+    // Tìm các chỉ số tăng trưởng theo ID của trẻ
+    List<GrowthRecord> findByChildId(Long childId);  
+
+    // Tìm các chỉ số tăng trưởng trong khoảng thời gian và theo ID trẻ
+    List<GrowthRecord> findByChildIdAndRecordDateBetween(Long childId, Date startDate, Date endDate); 
 }

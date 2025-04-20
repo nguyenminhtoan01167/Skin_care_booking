@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-    List<Payment> findByUserId(Long userId);  // Tìm thanh toán theo ID người dùng
-    List<Payment> findByStatus(String status);  // Tìm thanh toán theo trạng thái
+
+    // Tìm thanh toán theo ID người dùng
+    List<Payment> findByUserId(Long userId);
+
+    // Tìm thanh toán theo trạng thái thanh toán
+    List<Payment> findByPaymentStatus(String paymentStatus);  // Đổi 'status' thành 'paymentStatus'
 }

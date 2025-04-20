@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")  // Đặt đường dẫn cho API
+@RequestMapping("/api/users")  // API
 public class UserController {
     
     @Autowired
     private UserService userService;
+
 
     // Đăng ký người dùng
     @PostMapping("/register")

@@ -1,8 +1,5 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity

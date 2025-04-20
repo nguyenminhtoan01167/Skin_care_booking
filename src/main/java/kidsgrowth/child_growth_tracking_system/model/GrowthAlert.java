@@ -1,8 +1,5 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
 import java.util.Date;
 @Entity
 public class GrowthAlert {
@@ -16,6 +13,10 @@ public class GrowthAlert {
     private Date alertDate;  // Ngày cảnh báo được tạo
     private String status;  // Trạng thái cảnh báo (chưa xử lý, đã xử lý)
 
+    @ManyToOne
+    @JoinColumn(name = "growth_record_id")  // Liên kết với GrowthRecord
+    private GrowthRecord growthRecord;  // Liên kết với GrowthRecord
+    
     // Constructor mặc định
     public GrowthAlert() {}
 

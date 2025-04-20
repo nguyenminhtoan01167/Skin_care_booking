@@ -1,17 +1,11 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import jakarta.persistence.EnumType;//
-import javax.persistence.*;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
+@Table (name = "GrowthRecords")
 public class GrowthRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

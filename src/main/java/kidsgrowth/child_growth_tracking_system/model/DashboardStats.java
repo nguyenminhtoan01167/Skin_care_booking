@@ -1,5 +1,4 @@
 package kidsgrowth.child_growth_tracking_system.model;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +8,7 @@ import kidsgrowth.child_growth_tracking_system.repository.UserRepository;
 
 @Service
 public class DashboardStats {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -57,5 +57,4 @@ public class DashboardStats {
         this.totalDoctors = doctorRepository.count();
         this.totalChildren = childRepository.count();
     }
-
 }
