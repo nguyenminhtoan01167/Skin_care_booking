@@ -47,5 +47,25 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
-    
+
+    // Đổi mật khẩu người dùng
+    public boolean changePassword(Long userId, String oldPassword, String newPassword) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            // Kiểm tra mật khẩu cũ
+            if (user.getPasswordHash().equals(oldPassword)) { // Thay bằng mã hóa nếu cần
+                user.setPasswordHash(newPassword); // Thay bằng mã hóa nếu cần
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Logic lấy thông tin hồ sơ
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
 }
+

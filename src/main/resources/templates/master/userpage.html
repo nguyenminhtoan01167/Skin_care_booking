@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông Tin Người Dùng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">Growth Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/profile">Hồ Sơ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Đăng Xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <h1 class="text-center mb-4">Thông Tin Người Dùng</h1>
+        <div class="card mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <h5 class="card-title">Họ và Tên: <span id="userFullName">Nguyễn Văn A</span></h5>
+                <p class="card-text">Email: <span id="userEmail">nguyenvana@example.com</span></p>
+                <p class="card-text">Vai Trò: <span id="userRole">Thành Viên</span></p>
+                <p class="card-text">Trạng Thái: <span id="userStatus">Hoạt Động</span></p>
+                <p class="card-text">Ngày Tham Gia: <span id="userCreatedAt">20/04/2025</span></p>
+                <a href="/edit-profile" class="btn btn-primary">Chỉnh Sửa Hồ Sơ</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4 bg-dark text-white text-center">
+        <p>&copy; 2025 Growth Tracker. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

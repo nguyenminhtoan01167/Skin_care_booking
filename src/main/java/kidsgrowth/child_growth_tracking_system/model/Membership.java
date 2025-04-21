@@ -1,23 +1,45 @@
 package kidsgrowth.child_growth_tracking_system.model;
+
 import jakarta.persistence.*;
+
 @Entity
+@Table(name = "memberships")
 public class Membership {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;       // Tên gói thành viên
-    private Double price;      // Giá của gói thành viên
-    private Integer durationDays;  // Thời gian sử dụng (tính bằng ngày)
-    private String description;  // Mô tả gói thành viên
+    @Column(name = "membership_id", unique = true, nullable = false)
+    private String membershipId;
 
-    // Getters and Setters
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "price", nullable = false)
+    private Double price;
+
+    @Column(name = "duration_days", nullable = false)
+    private Integer durationDays;
+
+    @Column(name = "description")
+    private String description;
+
+    // Getters và Setters
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMembershipId() {
+        return membershipId;
+    }
+
+    public void setMembershipId(String membershipId) {
+        this.membershipId = membershipId;
     }
 
     public String getName() {

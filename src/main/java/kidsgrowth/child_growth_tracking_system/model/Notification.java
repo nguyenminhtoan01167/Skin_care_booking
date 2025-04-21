@@ -1,24 +1,38 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.util.Date;
+
 @Entity
+@Table(name = "notifications")
 public class Notification {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;  // Liên kết với bảng User (người nhận thông báo)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    private String message;  // Nội dung thông báo
-    private String notificationType;  // Loại thông báo (alert, reminder, update)
-    private String status;  // Trạng thái của thông báo (sent, pending, failed)
-    private Date createdAt;  // Thời gian tạo thông báo
-    private Date sentAt;  // Thời gian gửi thông báo (nếu đã gửi)
+    @Column(name = "message", nullable = false)
+    private String message;
 
-    // Getters and Setters
+    @Column(name = "notification_type", nullable = false)
+    private String notificationType;
+
+    @Column(name = "status", nullable = false)
+    private String status;
+
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Column(name = "sent_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date sentAt;
+
+    // Getters và Setters
     public Long getId() {
         return id;
     }

@@ -16,7 +16,6 @@ public class ChildController {
 
     @Autowired
     private ChildService childService;
-
     // Thêm mới trẻ em
     @PostMapping
     public Child createChild(@RequestBody Child child) {

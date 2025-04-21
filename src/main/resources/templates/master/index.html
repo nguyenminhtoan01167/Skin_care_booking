@@ -1,143 +1,85 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hệ Thống Theo Dõi Tăng Trưởng Trẻ Em</title>
-  
-  <!-- Thêm Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Tracker - Trang Chủ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Growth Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link active" href="#intro">Trang Chủ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#services">Dịch Vụ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#pricing">Gói Thành Viên</a></li>
-            <li class="nav-item"><a class="nav-link" href="#testimonials">Phản Hồi</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html">Đăng Ký</a></li>
-            <li class="nav-item"><a class="nav-link" href="login.html">Đăng Nhập</a></li>
-            <!-- Thêm mục Dashboard -->
-            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <section id="intro" class="text-center py-5">
-    <div class="container">
-      <div class="image-center">
-        <img src="C:\Child_Growth\project_Child-Growth-Tracking-System\project_Child-Growth-Tracking-System-1\src\main\resources\static\img\istockphoto-522424615-2048x2048.jpg" alt="Growth Tracker Logo" class="img-fluid">
-      </div>
-      <h1 class="display-4">Chào Mừng Đến Với Hệ Thống Theo Dõi Tăng Trưởng Trẻ Em</h1>
-      <p class="lead">Chúng tôi cung cấp giải pháp theo dõi sự phát triển toàn diện của trẻ em, giúp ba mẹ an tâm hơn.</p>
-      <a href="#services" class="btn btn-primary btn-lg">Khám Phá Ngay</a>
-    </div>
-  </section>
-
-  <!-- Thêm phần Dashboard -->
-  <section id="dashboard-section" class="bg-light py-5">
-    <div class="container text-center">
-      <h2 class="display-5">Tạo Mới và Xem Dashboard</h2>
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Theo Dõi Tăng Trưởng</h5>
-              <p class="card-text">Xem và cập nhật các chỉ số tăng trưởng của trẻ (cân nặng, chiều cao, BMI, v.v.).</p>
-              <a href="dashboard.html" class="btn btn-primary">Xem Dashboard</a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Growth Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Đăng Nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Đăng Ký</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Lịch Tiêm Chủng</h5>
-              <p class="card-text">Theo dõi lịch tiêm chủng và các mốc tiêm phòng của trẻ.</p>
-              <a href="reminder.html" class="btn btn-primary">Xem Lịch Tiêm</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-5 text-center">
+            <div class="container">
+                <h1>Theo Dõi Sự Phát Triển Của Trẻ</h1>
+                <p class="lead">Giúp bạn theo dõi và đảm bảo sự phát triển khỏe mạnh của trẻ</p>
+                <a href="/register" class="btn btn-primary btn-lg">Bắt Đầu Ngay</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <section id="services" class="py-5">
-    <div class="container text-center">
-      <h2 class="display-5">Dịch Vụ Của Chúng Tôi</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="service-box">
-            <i class="fa fa-line-chart fa-3x mb-3"></i>
-            <h5>Theo Dõi Tăng Trưởng</h5>
-            <p>Giám sát sự phát triển chiều cao và cân nặng của trẻ theo thời gian.</p>
-            <a href="growth_chart.html" class="btn btn-primary">Xem Biểu Đồ</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="service-box">
-            <i class="fa fa-calendar-check-o fa-3x mb-3"></i>
-            <h5>Lịch Tiêm Chủng</h5>
-            <p>Nhắc nhở và theo dõi lịch tiêm chủng của trẻ, đảm bảo sức khỏe tối ưu.</p>
-            <a href="reminder.html" class="btn btn-primary">Xem Lịch</a>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="service-box">
-            <i class="fa fa-users fa-3x mb-3"></i>
-            <h5>Cộng Đồng Hỗ Trợ</h5>
-            <p>Kết nối với các bậc phụ huynh khác để chia sẻ kinh nghiệm và hỗ trợ lẫn nhau.</p>
-            <a href="blog.html" class="btn btn-primary">Đọc Blog</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="bg-light py-5">
-    <div class="container text-center">
-      <h2 class="display-5">Các Gói Thành Viên</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="C:\Child_Growth\project_Child-Growth-Tracking-System\project_Child-Growth-Tracking-System-1\src\main\resources\static\img\77246447dfbfeed4afb2f0c2ee85f76f.jpg" class="card-img-top" alt="Gói Cơ Bản">
-            <div class="card-body">
-              <h5 class="card-title">Gói Cơ Bản</h5>
-              <p class="card-text">Miễn phí, cung cấp các tính năng cơ bản như theo dõi tăng trưởng và lịch tiêm chủng.</p>
-              <a href="register.html" class="btn btn-primary">Đăng Ký</a>
+        <section id="features" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Tính Năng Nổi Bật</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3>Theo Dõi Tăng Trưởng</h3>
+                                <p>Ghi nhận và theo dõi chiều cao, cân nặng của trẻ theo thời gian</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3>Tư Vấn Chuyên Gia</h3>
+                                <p>Kết nối với bác sĩ để được tư vấn về sự phát triển của trẻ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3>Cảnh Báo Thông Minh</h3>
+                                <p>Nhận thông báo khi có bất thường trong sự phát triển</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="C:\Child_Growth\project_Child-Growth-Tracking-System\project_Child-Growth-Tracking-System-1\src\main\resources\static\img\545813b7b7a24829cdc4753400c8dfb4.jpg"class="card-img-top" alt="Gói Cao Cấp">
-            <div class="card-body">
-              <h5 class="card-title">Gói Cao Cấp</h5>
-              <p class="card-text">Bao gồm tất cả các tính năng của Gói Cơ Bản, cùng với phân tích dữ liệu và báo cáo chi tiết.</p>
-              <a href="register.html" class="btn btn-primary">Đăng Ký</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
+    </main>
 
-  <footer id="contact" class="text-center py-4">
-    <p>&copy; 2025 Growth Tracker System | Liên hệ: contact@growthtracker.vn</p>
-  </footer>
+    <footer class="py-4 bg-dark text-white">
+        <div class="container text-center">
+            <p>&copy; 2025 Growth Tracker. All rights reserved.</p>
+        </div>
+    </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

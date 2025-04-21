@@ -1,28 +1,39 @@
 package kidsgrowth.child_growth_tracking_system.model;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "full_name", nullable = false)
     private String fullName;
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private Role role;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private Status status;
 
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @Column(name = "expiry_date")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date expiryDate;
 
     public enum Role {
@@ -33,7 +44,7 @@ public class User {
         ACTIVE, INACTIVE, PENDING
     }
 
-    // Getters and Setters
+    // Getters và Setters
     public Long getId() {
         return id;
     }

@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     
+    Optional<User> findById(Long id);
+    
     // Tìm kiếm người dùng theo ID
     Optional<User> findById(Integer id);
     
