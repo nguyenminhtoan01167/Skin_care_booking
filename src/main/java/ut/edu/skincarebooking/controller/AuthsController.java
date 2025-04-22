@@ -14,15 +14,15 @@ public class AuthsController {
         return "contact"; // Tên file HTML trong thư mục templates
     }
 //    @GetMapping("/about")
-//    public String portfoliodetails() {
+//    public String about() {
 //        return "about"; // Tên file HTML trong thư mục templates
 //    }
 //    @GetMapping("/about")
 //    public String portfolio() {
 //        return "about"; // Tên file HTML trong thư mục templates
 //    }
-//    @GetMapping("/about")
-//    public String resume() {
-//        return "about"; // Tên file HTML trong thư mục templates
-//    }
+   @GetMapping("/resume")
+   public String resume() {
+       return "resume"; // Tên file HTML trong thư mục templates
+   }
 }
