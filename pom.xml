@@ -59,6 +59,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <!-- Jakarta Persistence API -->
     <dependency>
         <groupId>jakarta.persistence</groupId>
@@ -82,6 +83,13 @@
     <groupId>org.hibernate.orm</groupId>
     <artifactId>hibernate-core</artifactId>
     <version>6.2.6.Final</version> <!-- Hoặc phiên bản phù hợp -->
+=======
+
+        <dependency>
+    <groupId>javax.persistence</groupId>
+    <artifactId>javax.persistence-api</artifactId>
+    <version>2.2</version> <!-- Điều chỉnh phiên bản nếu cần -->
+>>>>>>> T
 </dependency>
     </dependencies>
 

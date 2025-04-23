@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // package ut.edu.skincarebooking.model;
 // import lombok.*;
 // import jakarta.persistence.*;
@@ -93,3 +94,9 @@
 //     }
 
 // }
+=======
+package ut.edu.skincarebooking.model;
+public class Appointment {
+
+}
+>>>>>>> T
