@@ -42,5 +42,7 @@ public class Controllers {
     public String index() {
         return "redirect:/"; // Chuyển hướng /index về /
     }
+
+   
     
 }
