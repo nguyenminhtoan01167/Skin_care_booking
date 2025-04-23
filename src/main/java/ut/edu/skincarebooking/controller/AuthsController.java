@@ -5,34 +5,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AuthsController {
+
+    @GetMapping("/")
+    public String home() {
+        return "user/index"; // Tên file HTML trong thư mục templates
+    }
     @GetMapping("/about")
     public String about() {
-        return "about"; // Tên file HTML trong thư mục templates
+        return "user/about"; // Tên file HTML trong thư mục templates
     }
     @GetMapping("/contact")
     public String contact() {
-        return "contact"; // Tên file HTML trong thư mục templates
+        return "user/contact"; // Tên file HTML trong thư mục templates
     }
-//    @GetMapping("/about")
-//    public String about() {
-//        return "about"; // Tên file HTML trong thư mục templates
-//    }
-//    @GetMapping("/about")
-//    public String portfolio() {
-//        return "about"; // Tên file HTML trong thư mục templates
-//    }
+
    @GetMapping("/resume")
    public String resume() {
-       return "resume"; // Tên file HTML trong thư mục templates
+       return "user/resume"; // Tên file HTML trong thư mục templates
    }
 
     @GetMapping("/portfolio")
     public String portfolio() {
-        return "portfolio"; // Tên file HTML trong thư mục templates
+        return "user/portfolio"; // Tên file HTML trong thư mục templates
     }
     @GetMapping("/services")
     public String services() {
-        return "services"; // Tên file HTML trong thư mục templates
+        return "user/services"; // Tên file HTML trong thư mục templates
     }
 
 
