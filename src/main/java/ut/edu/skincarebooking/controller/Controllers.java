@@ -36,6 +36,6 @@ public class Controllers {
 
     @GetMapping("/admin")
     public String adminDashboard() {
-        return "admin/html/dashboard/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
+        return "admin/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
     }
 }
