@@ -25,4 +25,19 @@ public class AuthsController {
    public String resume() {
        return "resume"; // Tên file HTML trong thư mục templates
    }
+
+    @GetMapping("/portfolio")
+    public String portfolio() {
+        return "portfolio"; // Tên file HTML trong thư mục templates
+    }
+    @GetMapping("/services")
+    public String services() {
+        return "services"; // Tên file HTML trong thư mục templates
+    }
+
+
+    @GetMapping("/admin")
+    public String adminDashboard() {
+        return "admin/html/dashboard/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
+    }
 }
