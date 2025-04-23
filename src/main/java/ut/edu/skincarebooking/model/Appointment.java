@@ -4,7 +4,9 @@
 // import java.time.LocalDateTime;
 // import java.util.ArrayList;
 // import java.util.List;
+
 // import org.springframework.format.annotation.DateTimeFormat;
+
 // @Entity
 // @Table(name = "appointments")
 // @Data
@@ -89,4 +91,5 @@
 //     protected void onUpdate() {
 //         updatedAt = LocalDateTime.now();
 //     }
+
 // }

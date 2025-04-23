@@ -3,6 +3,9 @@
 // import jakarta.persistence.*;
 // import lombok.*;
 // import lombok.experimental.SuperBuilder;
+// import java.util.List;
+
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // @Entity
 // @Table(name = "staff")
@@ -16,8 +19,6 @@
 //     @Builder.Default
 //     private String userType = "STAFF";
 
-//     @PrePersist
-//     @Override
 //     protected void onCreate() {
 //         super.onCreate();
 //         if (getRole() == null) {
@@ -26,5 +27,11 @@
 //     }
 
 //     @Column(name = "img", nullable = false)
-//     private String img; // Ảnh đại diện của nhân viên
+//     private String img;
+
+//     @EqualsAndHashCode.Exclude
+//     @ToString.Exclude
+//     @JsonIgnore // Tránh vòng lặp khi gọi API
+//     @OneToMany(mappedBy = "staff")
+//     private List<Appointment> appointments; // Danh sách lịch hẹn mà nhân viên quản lý
 // }

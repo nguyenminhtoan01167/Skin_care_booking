@@ -1,30 +1,52 @@
 // package ut.edu.skincarebooking.model;
 
-// import jakarta.persistence.*;
 // import lombok.*;
+// import jakarta.persistence.*;
 // import lombok.experimental.SuperBuilder;
+// import java.util.List;
+// import java.util.Set;
+
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
 // @Entity
 // @Data
+// @Table(name = "customers")
 // @NoArgsConstructor
 // @AllArgsConstructor
-// @Table(name = "customers")
 // @SuperBuilder
 // @EqualsAndHashCode(callSuper = true)
 // public class Customer extends User {
 
-//     @Builder.Default
-//     private String userType = "CUSTOMER";
+//  // Additional customer-specific fields
 
-//     @PrePersist
-//     @Override
-//     protected void onCreate() {
-//         super.onCreate();
-//         if (getRole() == null) {
-//             setRole(Role.ROLE_CUSTOMER);
-//         }
-//     }
+//  @Builder.Default
+//  private String userType = "CUSTOMER";
 
-//     @Column(name = "account_verified", nullable = false)
-//     private boolean accountVerified; // Trạng thái xác minh tài khoản
+//  protected void onCreate() {
+//      super.onCreate();
+//      if (getRole() == null) {
+//          setRole(Role.ROLE_CUSTOMER);
+//      }
+//  }
+
+//  private boolean accountVerified;
+
+//  public boolean getAccountVerified() {
+//      return accountVerified;
+//  }
+
+//  @OneToMany(mappedBy = "customer")
+//  private Set<SecureToken> tokens;
+
+
+//  @EqualsAndHashCode.Exclude
+//  @ToString.Exclude
+//  @JsonIgnore // Tránh vòng lặp khi gọi API
+//  @OneToMany(mappedBy = "customer")
+//  private List<Appointment> appointments; // Danh sách lịch hẹn của khách hàng
+
+//  @EqualsAndHashCode.Exclude
+//  @ToString.Exclude
+//  @OneToMany(mappedBy = "customer")
+//  private List<Feedback> feedbacks; // Danh sách phản hồi của khách hàng
 // }

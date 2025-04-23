@@ -1,11 +1,12 @@
 // package ut.edu.skincarebooking.model;
 
-// import jakarta.persistence.*;
 // import lombok.*;
 // import lombok.experimental.SuperBuilder;
+// import jakarta.persistence.*;
+// import java.time.LocalDateTime;
+// import java.util.UUID;
 
-// import java.time.LocalDateTime;;
-// @MappedSuperclass // Lớp này không tạo bảng, chỉ để các lớp con kế thừa
+// @MappedSuperclass // Class User này không tạo bảng, chỉ để các class con kế thừa
 // @Data
 // @SuperBuilder
 // @NoArgsConstructor
@@ -15,7 +16,7 @@
 //     @Id
 //     @GeneratedValue(strategy = GenerationType.AUTO)
 //     @Column(name = "user_id", nullable = false, unique = true)
-//     private Long id;
+//     private UUID id;
 
 //     @Column(name = "username", nullable = false, unique = true)
 //     private String username;
@@ -23,32 +24,44 @@
 //     @Column(name = "password", nullable = false)
 //     private String password;
 
+//     @Column(name = "full_name")
+//     private String fullName;
+
 //     @Column(name = "email", nullable = false, unique = true)
 //     private String email;
 
+//     @Column(name = "phone", nullable = false)
+//     private String phone;
+
+//     @Column(name = "location")
+//     private String location;
+
 //     @Enumerated(EnumType.STRING)
-//     @Column(name = "role", nullable = false)
+//     @Column(name = "role")
 //     private Role role;
 
-//     // public enum Role {
-//     //     ROLE_CUSTOMER,
-//     //     ROLE_MANAGER,
-//     //     ROLE_STAFF,
-//     //     ROLE_THERAPIST
-//     // }
+//     public enum Role {
+//         ROLE_CUSTOMER,
+//         ROLE_MANAGER,
+//         ROLE_STAFF,
+//         ROLE_THERAPIST
+//     }
 
-//     @Column(name = "created_at", updatable = false)
+
+//     @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 //     private LocalDateTime createdAt;
 
-//     @Column(name = "updated_at")
+//     @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
 //     private LocalDateTime updatedAt;
 
-//     @PrePersist
+//     private String userType;
+
+//     @PrePersist // sẽ được gọi khi 1 entity được lưu vào csdl đầu tiên.
 //     protected void onCreate() {
 //         createdAt = LocalDateTime.now();
 //     }
 
-//     @PreUpdate
+//     @PreUpdate //sẽ được gọi ngay trước khi một entity được cập nhật trong cơ sở dữ liệu
 //     protected void onUpdate() {
 //         updatedAt = LocalDateTime.now();
 //     }
