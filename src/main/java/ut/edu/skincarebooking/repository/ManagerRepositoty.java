@@ -1,4 +1,10 @@
 package ut.edu.skincarebooking.repository;
 
-public interface ManagerRepositoty {
+import org.springframework.stereotype.Repository;
+
+import ut.edu.skincarebooking.model.Manager;
+
+@Repository
+public interface ManagerRepositoty extends UserRepository<Manager> {
+    // Manager-specific methods can be added here if needed
 }
