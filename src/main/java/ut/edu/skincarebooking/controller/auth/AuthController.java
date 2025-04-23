@@ -15,13 +15,27 @@ public class AuthController {
     
 // 
 
-// @GetMapping("/login")
-//     public String login() {
-//         return "auth/auth-login-basic"; // Đường dẫn tới file auth-login-basic.html trong thư mục templates
-//     }
+@GetMapping("/login")
+    public String login() {
+        return "auth/auth-login-basic"; // Đường dẫn tới file auth-login-basic.html trong thư mục templates
+    }
 
 //     // @GetMapping("/register")
 //     // public String register() {
 //     //     return "auth/auth-register-basic"; // Đường dẫn tới file auth-register-basic.html trong thư mục templates
 //     // }
+
+@GetMapping("/auth-forgot-password-basic")
+    public String forgotPassword() {
+        return "auth/auth-forgot-password-basic"; // Đường dẫn tới file auth-forgot-password-basic.html trong thư mục templates
+    }
+
+@GetMapping("/auth-login-basic")
+public String loginBasic() {
+    return "auth/auth-login-basic"; // Đường dẫn tới file auth-login-basic.html trong thư mục templates
+}
+@GetMapping("/auth-register-basic")
+public String register() {
+    return "auth/auth-register-basic"; // Đường dẫn tới file auth-register-basic.html trong thư mục templates
+}
 }
