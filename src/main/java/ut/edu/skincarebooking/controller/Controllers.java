@@ -38,4 +38,9 @@ public class Controllers {
     public String adminDashboard() {
         return "admin/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
     }
+    @GetMapping("/index")
+    public String index() {
+        return "redirect:/"; // Chuyển hướng /index về /
+    }
+    
 }

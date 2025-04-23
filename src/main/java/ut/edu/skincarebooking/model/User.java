@@ -5,7 +5,6 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @MappedSuperclass // Lớp này không tạo bảng, chỉ để các lớp con kế thừa
 @Data
@@ -17,7 +16,7 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id", nullable = false, unique = true)
-    private UUID id;
+    private Long id;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
