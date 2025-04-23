@@ -1,13 +1,13 @@
-package ut.edu.skincarebooking.repository;
+// package ut.edu.skincarebooking.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import ut.edu.skincarebooking.model.User;
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import ut.edu.skincarebooking.model.User;
 
-import java.util.Optional;
-import java.util.UUID;
+// import java.util.Optional;
+// import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByUsername(String username);
-    boolean existsByUsername(String username);
-    boolean existsByEmail(String email);
-}
+// public interface UserRepository extends JpaRepository<User, UUID> {
+//     Optional<User> findByUsername(String username);
+//     boolean existsByUsername(String username);
+//     boolean existsByEmail(String email);
+// }
