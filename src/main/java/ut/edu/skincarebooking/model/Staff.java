@@ -1,30 +1,37 @@
-package ut.edu.skincarebooking.model;
+// package ut.edu.skincarebooking.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+// import jakarta.persistence.*;
+// import lombok.*;
+// import lombok.experimental.SuperBuilder;
+// import java.util.List;
 
-@Entity
-@Table(name = "staff")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
-@EqualsAndHashCode(callSuper = true)
-public class Staff extends User {
+// import com.fasterxml.jackson.annotation.JsonIgnore;
 
-    @Builder.Default
-    private String userType = "STAFF";
+// @Entity
+// @Table(name = "staff")
+// @Data
+// @NoArgsConstructor
+// @AllArgsConstructor
+// @SuperBuilder
+// @EqualsAndHashCode(callSuper = true)
+// public class Staff extends User {
 
-    @PrePersist
-    @Override
-    protected void onCreate() {
-        super.onCreate();
-        if (getRole() == null) {
-            setRole(Role.ROLE_STAFF);
-        }
-    }
+//     @Builder.Default
+//     private String userType = "STAFF";
 
-    @Column(name = "img", nullable = false)
-    private String img; // Ảnh đại diện của nhân viên
-}
+//     protected void onCreate() {
+//         super.onCreate();
+//         if (getRole() == null) {
+//             setRole(Role.ROLE_STAFF);
+//         }
+//     }
+
+//     @Column(name = "img", nullable = false)
+//     private String img;
+
+//     @EqualsAndHashCode.Exclude
+//     @ToString.Exclude
+//     @JsonIgnore // Tránh vòng lặp khi gọi API
+//     @OneToMany(mappedBy = "staff")
+//     private List<Appointment> appointments; // Danh sách lịch hẹn mà nhân viên quản lý
+// }
