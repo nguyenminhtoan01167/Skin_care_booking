@@ -36,6 +36,10 @@ public class Controllers {
     @GetMapping("/login")
     public String Login() {
        return "user/auth-login-basic"; // Tên file HTML trong thư mục templates
+    }
+    @GetMapping("/register")
+    public String Register() {
+       return "user/auth-register-basic"; // Tên file HTML trong thư mục templates
    }
 
     @GetMapping("/admin")
