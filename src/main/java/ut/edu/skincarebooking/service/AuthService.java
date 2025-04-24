@@ -1,7 +1,6 @@
 package ut.edu.skincarebooking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ut.edu.skincarebooking.dto.request.LoginRequest;
 import ut.edu.skincarebooking.dto.request.RegisterRequest;
@@ -16,9 +15,6 @@ public class AuthService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     public String registerCustomer(RegisterRequest request) {
         if (customerRepository.existsByEmail(request.getEmail())) {
             return "Email already exists";
@@ -27,7 +23,7 @@ public class AuthService {
         Customer customer = Customer.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .password(request.getPassword()) // Lưu mật khẩu trực tiếp
                 .build();
 
         customerRepository.save(customer);
@@ -43,12 +39,10 @@ public class AuthService {
         }
 
         Customer customer = customerOptional.get();
-        if (!passwordEncoder.matches(request.getPassword(), customer.getPassword())) {
+        if (!request.getPassword().equals(customer.getPassword())) { // So sánh mật khẩu trực tiếp
             return "Invalid password";
         }
 
-        // TODO: Replace this with JWT token generation logic if needed
-        // Example: Generate a JWT token and return it instead of a plain success message
         return "Login successful";
     }
 }

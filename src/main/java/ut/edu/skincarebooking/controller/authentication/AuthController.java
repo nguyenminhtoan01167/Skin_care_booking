@@ -1,7 +1,15 @@
 package ut.edu.skincarebooking.controller.authentication;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import ut.edu.skincarebooking.dto.request.LoginRequest;
+import ut.edu.skincarebooking.dto.request.RegisterRequest;
+import ut.edu.skincarebooking.service.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")
