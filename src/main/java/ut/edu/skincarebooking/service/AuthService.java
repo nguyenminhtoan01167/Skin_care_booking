@@ -2,6 +2,8 @@ package ut.edu.skincarebooking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ut.edu.skincarebooking.dto.request.ChangePasswordRequest;
 import ut.edu.skincarebooking.dto.request.LoginRequest;
 import ut.edu.skincarebooking.dto.request.RegisterRequest;
 import ut.edu.skincarebooking.model.Customer;
@@ -44,5 +46,29 @@ public class AuthService {
         }
 
         return "Login successful";
+    }
+
+     public void changePassword(ChangePasswordRequest request) {
+        // Tìm người dùng theo email
+        Optional<Customer> customerOptional = customerRepository.findByEmail(request.getEmail());
+        if (customerOptional.isEmpty()) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+        Customer customer = customerOptional.get();
+
+        // Kiểm tra mật khẩu hiện tại (so sánh chuỗi trực tiếp)
+        if (!request.getCurrentPassword().equals(customer.getPassword())) {
+            throw new IllegalArgumentException("Current password is incorrect");
+        }
+
+        // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("New password and confirm password do not match");
+        }
+
+        // Cập nhật mật khẩu (lưu trực tiếp chuỗi mới)
+        customer.setPassword(request.getNewPassword());
+        customerRepository.save(customer);
     }
 }
