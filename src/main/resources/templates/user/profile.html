@@ -1,0 +1,136 @@
+<section class="section main-section">
+    <div class="container">
+      <!-- Header -->
+      <div class="columns is-centered mb-6">
+        <div class="column is-half has-text-centered">
+          <h1 class="title is-3">My Profile</h1>
+          <p class="subtitle is-5">Manage your profile and account settings</p>
+        </div>
+      </div>
+  
+      <!-- Profile and Edit Section -->
+      <div class="columns is-variable is-8">
+        <!-- Profile Card -->
+        <div class="column is-4">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-account"></i></span>
+                Profile
+              </p>
+            </header>
+            <div class="card-content has-text-centered">
+              <div class="image is-128x128 mx-auto mb-4">
+                <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="is-rounded">
+              </div>
+              <hr>
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input type="text" readonly value="John Doe" class="input is-static">
+                </div>
+              </div>
+              <hr>
+              <div class="field">
+                <label class="label">E-mail</label>
+                <div class="control">
+                  <input type="text" readonly value="user@example.com" class="input is-static">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Edit Profile Card -->
+        <div class="column is-8">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                Edit Profile
+              </p>
+            </header>
+            <div class="card-content">
+              <form action="/api/user/edit-profile" method="POST" enctype="multipart/form-data">
+                <div class="field">
+                  <label class="label">Avatar</label>
+                  <div class="control">
+                    <input type="file" name="avatar" class="file-input">
+                  </div>
+                </div>
+                <hr>
+                <div class="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input type="text" autocomplete="on" name="name" value="John Doe" class="input" required>
+                  </div>
+                  <p class="help">Required. Your name</p>
+                </div>
+                <div class="field">
+                  <label class="label">E-mail</label>
+                  <div class="control">
+                    <input type="email" autocomplete="on" name="email" value="user@example.com" class="input" required>
+                  </div>
+                  <p class="help">Required. Your e-mail</p>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <button type="submit" class="button is-primary is-fullwidth">
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Change Password Section -->
+      <div class="columns is-centered mt-6">
+        <div class="column is-half">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-lock"></i></span>
+                Change Password
+              </p>
+            </header>
+            <div class="card-content">
+              <form action="/api/user/change-password" method="POST">
+                <div class="field">
+                  <label class="label">Current Password</label>
+                  <div class="control">
+                    <input type="password" name="password_current" autocomplete="current-password" class="input" required>
+                  </div>
+                  <p class="help">Required. Your current password</p>
+                </div>
+                <hr>
+                <div class="field">
+                  <label class="label">New Password</label>
+                  <div class="control">
+                    <input type="password" autocomplete="new-password" name="password" class="input" required>
+                  </div>
+                  <p class="help">Required. New password</p>
+                </div>
+                <div class="field">
+                  <label class="label">Confirm Password</label>
+                  <div class="control">
+                    <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
+                  </div>
+                  <p class="help">Required. New password one more time</p>
+                </div>
+                <div class="field">
+                  <div class="control">
+                    <button type="submit" class="button is-success is-fullwidth">
+                      Change Password
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

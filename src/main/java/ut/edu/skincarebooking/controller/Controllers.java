@@ -58,4 +58,12 @@ public class Controllers {
     public String loginPage() {
         return "user/auth-login-basic"; // Trả về file auth-login-basic.html trong thư mục templates/user
     }
+    @GetMapping("/profile")
+    public String profilePage() {
+        return "user/profile"; // Trả về file profile.html trong thư mục templates/admin
+    }
+    @GetMapping("/user/profile")
+public String redirectToProfile() {
+    return "redirect:/profile"; // Chuyển hướng đến /profile
+}
 }
