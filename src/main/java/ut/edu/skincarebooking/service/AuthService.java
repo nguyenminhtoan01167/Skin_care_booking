@@ -1,6 +1,7 @@
 package ut.edu.skincarebooking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ut.edu.skincarebooking.dto.request.ChangePasswordRequest;
@@ -18,35 +19,49 @@ public class AuthService {
     private CustomerRepository customerRepository;
 
     public String registerCustomer(RegisterRequest request) {
-        if (customerRepository.existsByEmail(request.getEmail())) {
-            return "Email already exists";
-        }
-
-        Customer customer = Customer.builder()
-                .username(request.getUsername())
-                .email(request.getEmail())
-                .password(request.getPassword()) // Lưu mật khẩu trực tiếp
-                .build();
-
-        customerRepository.save(customer);
-
-        return "Customer registered successfully";
+    // Kiểm tra email đã tồn tại
+    if (customerRepository.existsByEmail(request.getEmail())) {
+        throw new IllegalArgumentException("Email already exists");
     }
 
-    public String loginCustomer(LoginRequest request) {
-        Optional<Customer> customerOptional = customerRepository.findByEmail(request.getEmail());
-
-        if (customerOptional.isEmpty()) {
-            return "Email not found";
-        }
-
-        Customer customer = customerOptional.get();
-        if (!request.getPassword().equals(customer.getPassword())) { // So sánh mật khẩu trực tiếp
-            return "Invalid password";
-        }
-
-        return "Login successful";
+    // Kiểm tra username đã tồn tại
+    if (customerRepository.existsByEmail(request.getUsername())) {
+        throw new IllegalArgumentException("Username already exists");
     }
+
+    // Mã hóa mật khẩu
+    String encodedPassword = new BCryptPasswordEncoder().encode(request.getPassword());
+
+    // Tạo đối tượng Customer
+    Customer customer = Customer.builder()
+            .username(request.getUsername())
+            .email(request.getEmail())
+            .password(encodedPassword) // Lưu mật khẩu đã mã hóa
+            .build();
+
+    // Lưu vào cơ sở dữ liệu
+    customerRepository.save(customer);
+
+    return "Customer registered successfully";
+}
+
+public String loginCustomer(LoginRequest request) {
+    // Tìm người dùng theo username
+    Optional<Customer> customerOptional = customerRepository.findByEmail(request.getEmail());
+
+    if (customerOptional.isEmpty()) {
+        return "Email not found";
+    }
+
+    Customer customer = customerOptional.get();
+
+    // Kiểm tra mật khẩu (so sánh mật khẩu đã mã hóa)
+    if (!new BCryptPasswordEncoder().matches(request.getPassword(), customer.getPassword())) {
+        return "Invalid password";
+    }
+
+    return "Login successful";
+}
 
      public void changePassword(ChangePasswordRequest request) {
         // Tìm người dùng theo email

@@ -28,9 +28,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    try {
         return ResponseEntity.ok(authService.loginCustomer(request));
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("An unexpected error occurred.");
     }
+}
 
       @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
