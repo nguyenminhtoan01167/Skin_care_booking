@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import ut.edu.skincarebooking.model.Customer;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
     // Check if a customer exists by email
     boolean existsByEmail(String email);
