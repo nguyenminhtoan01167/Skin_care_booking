@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - Kelly Bootstrap Template</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <title>Index - SKINCARE BOOKING</title>
+    <meta name="description" content="Book your skincare appointments with ease.">
+    <meta name="keywords" content="skincare, booking, beauty, appointments">
 
     <!-- Favicons -->
     <link href="/user/assets/img/favicon.png" rel="icon">
@@ -42,19 +42,15 @@
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
         <a href="/index" class="logo d-flex align-items-center me-auto me-xl-0">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.png" alt=""> -->
-            <h1 class="sitename">Kelly</h1>
+            <h1 class="sitename">Skincare Booking</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="/" class="active">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/resume">Resume</a></li>
+                <li><a href="/about">About Us</a></li>
                 <li><a href="/services">Services</a></li>
-                <li><a href="/portfolio">Portfolio</a></li>
-            
+                <li><a href="#" onclick="checkLogin()">Book Now</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -75,14 +71,14 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section">
 
-        <img src="/user/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+        <img src="/user/assets/img/profile.jpg" alt="Skincare Specialist" data-aos="fade-in">
 
         <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <h2>Kelly Adams</h2>
-                    <p>I'm a professional illustrator from San Francisco</p>
-                    <a href="/about" class="btn-get-started">About Me</a>
+                    <h2>Welcome to Skincare Booking</h2>
+                    <p>Your journey to radiant skin starts here. Book your appointment today!</p>
+                    <a href="#" class="btn-get-started" onclick="checkLogin()">Book Now</a>
                 </div>
             </div>
         </div>
@@ -95,20 +91,13 @@
 
     <div class="container">
         <div class="copyright text-center ">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Kelly</strong> <span>All Rights Reserved<br></span></p>
+            <p><span>All Rights Reserved<br></span></p>
         </div>
         <div class="social-links d-flex justify-content-center">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href=“https://themewagon.com>ThemeWagon
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
         </div>
     </div>
 
@@ -133,6 +122,17 @@
 
 <!-- Main JS File -->
 <script src="/user/assets/js/main.js"></script>
+
+<script>
+    function checkLogin() {
+        const isLoggedIn = false; // Replace with actual login check logic
+        if (isLoggedIn) {
+            window.location.href = '/booking';
+        } else {
+            window.location.href = '/login';
+        }
+    }
+</script>
 
 </body>
 
