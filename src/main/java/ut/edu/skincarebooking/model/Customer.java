@@ -15,7 +15,14 @@ public class Customer extends User {
 
     @Builder.Default
     private String userType = "CUSTOMER";
+    @Column(nullable = false, unique = true)
+    private String username; // Thêm trường username với ràng buộc unique
 
+    @Column(nullable = false, unique = true)
+    private String email; // Thêm trường email với ràng buộc unique
+
+    @Column(nullable = false)
+    private String password; // Thêm trường password
     @PrePersist
     @Override
     protected void onCreate() {

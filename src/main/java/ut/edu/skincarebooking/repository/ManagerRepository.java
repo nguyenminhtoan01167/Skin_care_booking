@@ -1,14 +1,14 @@
 package ut.edu.skincarebooking.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
-import ut.edu.skincarebooking.model.User;
-
+import org.springframework.stereotype.Repository;
+import ut.edu.skincarebooking.model.Manager;
 import java.util.Optional;
+import java.util.UUID;
 
-@NoRepositoryBean
-public interface UserRepository<T extends User> extends JpaRepository<T, Long> {
+@Repository
+public interface ManagerRepository extends JpaRepository<Manager, UUID> {
     boolean existsByEmail(String email); // Kiểm tra email đã tồn tại
     boolean existsByUsername(String username); // Kiểm tra username đã tồn tại
-    Optional<T> findByEmail(String email); // Tìm người dùng theo email
+    Optional<Manager> findByEmail(String email); // Tìm Manager theo email
 }

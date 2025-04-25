@@ -165,7 +165,7 @@ public String registerUser(RegisterRequest request) {
     // Lưu vào cơ sở dữ liệu
     userRepository.save(user);
 
-    return "User registered successfully";
+    return "User registered successfully";  
 }
 public String loginCustomer(LoginRequest request) {
     // Tìm người dùng theo username

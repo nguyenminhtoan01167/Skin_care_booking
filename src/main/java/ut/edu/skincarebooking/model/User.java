@@ -3,10 +3,8 @@ package ut.edu.skincarebooking.model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 
 @MappedSuperclass // Lớp này không tạo bảng, chỉ để các lớp con kế thừa
 @Data
@@ -54,5 +52,22 @@ public abstract class User {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    // Thêm phương thức tiện ích để kiểm tra vai trò
+    public boolean isCustomer() {
+        return Role.ROLE_CUSTOMER.equals(this.role);
+    }
+
+    public boolean isManager() {
+        return Role.ROLE_MANAGER.equals(this.role);
+    }
+
+    public boolean isStaff() {
+        return Role.ROLE_STAFF.equals(this.role);
+    }
+
+    public boolean isTherapist() {
+        return Role.ROLE_THERAPIST.equals(this.role);
     }
 }

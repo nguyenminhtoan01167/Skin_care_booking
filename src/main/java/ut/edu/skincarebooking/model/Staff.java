@@ -25,6 +25,15 @@ public class Staff extends User {
         }
     }
 
+    @Column(nullable = false, unique = true)
+    private String username; // Username phải là duy nhất
+
+    @Column(nullable = false, unique = true)
+    private String email; // Email phải là duy nhất
+
+    @Column(nullable = false)
+    private String password; // Mật khẩu
+
     @Column(name = "img", nullable = false)
     private String img; // Ảnh đại diện của nhân viên
 }
