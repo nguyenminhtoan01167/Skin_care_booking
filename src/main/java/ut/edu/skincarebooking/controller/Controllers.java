@@ -42,28 +42,21 @@ public class Controllers {
        return "user/auth-register-basic"; // Tên file HTML trong thư mục templates
    }
 
-    @GetMapping("/admin")
-    public String adminDashboard() {
-        return "admin/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
-    }
-    @GetMapping("/auth-forgot-password-basic")
-    public String forgotPasswordPage() {
-        return "user/auth-forgot-password-basic"; // Trả về file auth-forgot-password-basic.html trong thư mục templates/user
-    }
-    @GetMapping("/index")
-    public String index() {
-        return "redirect:/"; // Chuyển hướng /index về /
-    }
-    @GetMapping("/auth-login-basic")
-    public String loginPage() {
-        return "user/auth-login-basic"; // Trả về file auth-login-basic.html trong thư mục templates/user
-    }
-    @GetMapping("/profile")
-    public String profilePage() {
-        return "user/profile"; // Trả về file profile.html trong thư mục templates/admin
-    }
-    @GetMapping("/user/profile")
-public String redirectToProfile() {
-    return "redirect:/profile"; // Chuyển hướng đến /profile
-}
+    
+
+
+    // @GetMapping("/admin")
+    // public String adminDashboard() {
+    //     return "admin/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
+    // }
+    
+    // @GetMapping("/index")
+    // public String index() {
+    //     return "redirect:/"; // Chuyển hướng /index về /
+    // }
+    
+//     @GetMapping("/user/profile")
+// public String redirectToProfile() {
+//     return "redirect:/profile"; // Chuyển hướng đến /profile
+// }
 }

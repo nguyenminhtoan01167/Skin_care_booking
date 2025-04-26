@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ut.edu.skincarebooking.dto.request.ChangePasswordRequest;
+
 import ut.edu.skincarebooking.dto.request.LoginRequest;
 import ut.edu.skincarebooking.dto.request.RegisterRequest;
 import ut.edu.skincarebooking.service.AuthService;
@@ -16,8 +16,7 @@ import ut.edu.skincarebooking.service.AuthService;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthService customerService;
+
 
     @Autowired
     private AuthService authService;
@@ -38,15 +37,10 @@ public ResponseEntity<String> login(@RequestBody LoginRequest request) {
     }
 }
 
-      @PostMapping("/change-password")
-    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequest request) {
-        try {
-            customerService.changePassword(request);
-            return ResponseEntity.ok("Password changed successfully.");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("An unexpected error occurred.");
-        }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+    // Xử lý logic logout (nếu cần)
+    return ResponseEntity.ok("Logged out successfully");
     }
 }

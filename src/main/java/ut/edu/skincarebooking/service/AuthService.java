@@ -25,7 +25,7 @@ public class AuthService {
     }
 
     // Kiểm tra username đã tồn tại
-    if (customerRepository.existsByEmail(request.getUsername())) {
+    if (customerRepository.existsByUsername(request.getUsername())) {
         throw new IllegalArgumentException("Username already exists");
     }
 
@@ -33,11 +33,11 @@ public class AuthService {
     String encodedPassword = new BCryptPasswordEncoder().encode(request.getPassword());
 
     // Tạo đối tượng Customer
-    Customer customer = Customer.builder()
-            .username(request.getUsername())
-            .email(request.getEmail())
-            .password(encodedPassword) // Lưu mật khẩu đã mã hóa
-            .build();
+    Customer customer = new Customer();
+            customer.setUsername(request.getUsername());
+            customer.setEmail(request.getEmail());
+            customer.setPassword(encodedPassword);
+            customer.setRole(Customer.Role.ROLE_CUSTOMER); // Lưu mật khẩu đã mã hóa
 
     // Lưu vào cơ sở dữ liệu
     customerRepository.save(customer);

@@ -14,18 +14,11 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        // Authorized
-//                        .requestMatchers("/protected/customer/**").hasRole("CUSTOMER") //example
-
-
-                        //Public
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/**").permitAll()
-
-                        .anyRequest().authenticated()
-                ); // Cho phép tất cả các yêu cầu mà không cần xác thực
+                        // Public routes
+                        .requestMatchers("/api/auth/**", "/login", "/register", "/user/**", "/admin/assets/**", "/protected/customer/**").permitAll()
+                        // Any other request requires authentication
+                        .anyRequest().permitAll()
+                );
         return http.build();
     }
 }

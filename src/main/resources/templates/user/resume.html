@@ -49,13 +49,14 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/resume" class="active">Resume</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/portfolio">Portfolio</a></li>
-        
-          <li><a href="/contact">Contact</a></li>
+          <li><a id="homeLink" href="/">Home</a></li>
+          <li><a id="aboutLink" href="/about">About Us</a></li>
+          <li><a id="servicesLink" href="/services">Services</a></li>
+          <li><a href="#" onclick="checkLogin()">Book Now</a></li>
+          <li><a id="contactLink" href="/contact">Contact</a></li>
+          <li id="loginMenu"><a href="/login">Login</a></li>
+          <li id="registerMenu"><a href="/register">Register</a></li>
+          <li id="profileMenu" style="display: none;"><a href="/protected/customer/profile">Profile</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -186,7 +187,50 @@
 
   <!-- Main JS File -->
   <script src="/user/assets/js/main.js"></script>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const user = JSON.parse(localStorage.getItem('user')); // Lấy thông tin người dùng từ localStorage
+      const loginMenu = document.getElementById('loginMenu');
+      const registerMenu = document.getElementById('registerMenu');
+      const profileMenu = document.getElementById('profileMenu');
+      const homeLink = document.getElementById('homeLink');
+      const aboutLink = document.getElementById('aboutLink');
+      const servicesLink = document.getElementById('servicesLink');
+      const contactLink = document.getElementById('contactLink');
+  
+      if (user) {
+        // Nếu người dùng đã đăng nhập
+        loginMenu.style.display = 'none'; // Ẩn Login
+        registerMenu.style.display = 'none'; // Ẩn Register
+        profileMenu.style.display = 'block'; // Hiện Profile
+        // Cập nhật liên kết sang khu vực bảo vệ
+        homeLink.href = '/protected/customer/';
+        aboutLink.href = '/protected/customer/about';
+        servicesLink.href = '/protected/customer/services';
+        contactLink.href = '/protected/customer/contact';
+      } else {
+        // Nếu người dùng chưa đăng nhập
+        loginMenu.style.display = 'block'; // Hiện Login
+        registerMenu.style.display = 'block'; // Hiện Register
+        profileMenu.style.display = 'none'; // Ẩn Profile
+        // Giữ liên kết công khai
+        homeLink.href = '/';
+        aboutLink.href = '/about';
+        servicesLink.href = '/services';
+        contactLink.href = '/contact';
+      }
+    });
+  
+    // Hàm kiểm tra trạng thái đăng nhập khi nhấn "Book Now"
+    function checkLogin() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        window.location.href = '/booking'; // Chuyển hướng đến trang đặt lịch
+      } else {
+        window.location.href = '/login'; // Chuyển hướng đến trang đăng nhập
+      }
+    }
+  </script>
 </body>
 
 </html>

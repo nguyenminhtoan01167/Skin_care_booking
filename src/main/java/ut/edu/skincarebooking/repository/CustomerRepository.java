@@ -12,6 +12,7 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
     // Check if a customer exists by email
     boolean existsByEmail(String email);
+    boolean existsByUsername(String username);
 
     // Find a customer by email
     Optional<Customer> findByEmail(String email);

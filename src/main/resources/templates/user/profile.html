@@ -61,6 +61,12 @@
                                 <input type="text" readonly value="user@example.com" class="input is-static">
                             </div>
                         </div>
+                        <div class="profile-header">
+                            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="Profile Picture">
+                            <h1 class="title is-4">John Doe</h1>
+                            <p class="subtitle is-6">user@example.com</p>
+                            <button class="button is-danger" onclick="logout()">Log Out</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,5 +140,70 @@
             </div>
         </div>
     </section>
+    <script>
+        document.getElementById('changePasswordForm').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword !== confirmPassword) {
+            alert('New password and confirm password do not match.');
+            return;
+        }
+
+        const payload = {
+            currentPassword: currentPassword,
+            newPassword: newPassword,
+            confirmPassword: confirmPassword
+        };
+
+        try {
+            const response = await fetch('/protected/customer/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}` // Nếu sử dụng JWT
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('Password changed successfully.');
+                document.getElementById('changePasswordForm').reset();
+            } else {
+                const error = await response.text();
+                alert('Failed to change password: ' + error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
+    });
+        function logout() {
+            // Gửi yêu cầu đến API logout
+            fetch('/api/auth/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Xóa thông tin người dùng khỏi localStorage
+                    localStorage.removeItem('user');
+                    // Chuyển hướng về trang đăng nhập
+                    window.location.href = '/login';
+                } else {
+                    alert('Failed to log out. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            });
+        }
+    </script>
 </body>
 </html>
