@@ -25,6 +25,6 @@ public class Manager extends User {
         }
     }
 
-    @Column(name = "img", nullable = false)
+    @Column(name = "img", nullable = true)
     private String img; // Ảnh đại diện của quản lý
 }

@@ -24,4 +24,6 @@ public class Customer extends User {
             setRole(Role.ROLE_CUSTOMER);
         }
     }
+    @Column(name = "img", nullable = true) // Cho phép null
+    private String img;
 }

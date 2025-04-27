@@ -17,6 +17,7 @@ public class SecurityConfig {
                         // Public routes
                         .requestMatchers("/api/auth/**", "/login", "/register", "/user/**", "/admin/assets/**", "/protected/customer/**").permitAll()
                         // Any other request requires authentication
+                        .requestMatchers("/api/auth/register-manager").permitAll()
                         .anyRequest().permitAll()
                 );
         return http.build();

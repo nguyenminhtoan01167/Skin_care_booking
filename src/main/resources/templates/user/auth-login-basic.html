@@ -105,38 +105,36 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>
-        document.getElementById('formAuthentication').addEventListener('submit', async function (event) {
+      document.getElementById('formAuthentication').addEventListener('submit', async function (event) {
           event.preventDefault();
           const email = document.getElementById('email').value;
           const password = document.getElementById('password').value;
           const payload = { email, password };
           try {
-            const response = await fetch('/api/auth/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(payload)
-            });
-            const result = await response.text(); // Đọc phản hồi dạng văn bản
-            if (response.ok) {
-              // Nếu đăng nhập thành công
-              if (result === 'Login successful') {
-                // Lưu thông tin người dùng giả vào localStorage
-                const user = { email };
-                localStorage.setItem('user', JSON.stringify(user));
-                // Chuyển hướng đến /protected/customer/
-                window.location.href = '/protected/customer/';
+              const response = await fetch('/api/auth/login', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload)
+              });
+              const data = await response.json();
+              if (response.ok) {
+                  localStorage.setItem('user', JSON.stringify(data.user));
+                  if (data.user.role === 'ROLE_MANAGER') {
+                      window.location.href = 'http://localhost:8080/protected/manager/';
+                  } else if (data.user.role === 'ROLE_CUSTOMER') {
+                      window.location.href = 'http://localhost:8080/protected/customer/';
+                  } else {
+                      alert('Access denied: Invalid role');
+                  }
               } else {
-                alert('Login failed: ' + result);
+                  alert('Login failed: ' + (data.error || 'Unknown error'));
               }
-            } else {
-              alert('Login failed: ' + result);
-            }
           } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
+              console.error('Error:', error);
+              alert('An error occurred. Please try again later.');
           }
-        });
-      </script>
+      });
+  </script>
 </body>
 
 </html>

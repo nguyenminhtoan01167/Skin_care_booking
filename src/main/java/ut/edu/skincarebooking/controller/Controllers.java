@@ -45,18 +45,7 @@ public class Controllers {
     
 
 
-    // @GetMapping("/admin")
-    // public String adminDashboard() {
-    //     return "admin/index"; // Trả về file index.html trong thư mục templates/admin/html/dashboard
-    // }
     
-    // @GetMapping("/index")
-    // public String index() {
-    //     return "redirect:/"; // Chuyển hướng /index về /
-    // }
     
-//     @GetMapping("/user/profile")
-// public String redirectToProfile() {
-//     return "redirect:/profile"; // Chuyển hướng đến /profile
-// }
+    
 }

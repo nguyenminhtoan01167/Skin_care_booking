@@ -126,13 +126,15 @@
             body: JSON.stringify(payload)
           });
     
+          const data = await response.json(); // Đọc phản hồi dạng JSON
+    
           if (response.ok) {
-            const result = await response.text();
-            alert('Registration successful: ' + result);
+            // Lưu thông tin người dùng vào localStorage
+            localStorage.setItem('user', JSON.stringify(data.user));
+            alert(data.message || 'Registration successful');
             window.location.href = '/login';
           } else {
-            const error = await response.json();
-            alert('Registration failed: ' + (error.message || 'Unknown error'));
+            alert('Registration failed: ' + (data.error || 'Unknown error'));
           }
         } catch (error) {
           console.error('Error:', error);
